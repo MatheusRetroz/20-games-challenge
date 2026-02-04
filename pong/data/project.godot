@@ -34,6 +34,10 @@ folder_colors={
 "res://scenes/": "blue"
 }
 
+[gui]
+
+theme/custom="uid://dgdu4d3dxmnb6"
+
 [layer_names]
 
 2d_physics/layer_1="ground"

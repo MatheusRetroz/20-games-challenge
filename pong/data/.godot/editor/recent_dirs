@@ -1,5 +1,5 @@
-res://scenes/player/
-res://scenes/main_scene/src/
+res://common/scripts/custom_button/
+res://common/themes/
 res://scenes/main_menu/
 res://common/scripts/
 res://scenes/main_scene/

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cd1nfee1uxkn8"]
 
 [ext_resource type="Script" uid="uid://b756sunwe7fbc" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="Texture2D" uid="uid://f0utvxt0fri5" path="res://icon.svg" id="2_0ebjn"]
 
-[node name="MainMenu" type="Control" unique_id=852214048]
+[node name="MainMenu" type="Control" unique_id=852214048 node_paths=PackedStringArray("main_container", "start_button", "options_button", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,3 +11,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsom3")
+main_container = NodePath("MainContainer")
+start_button = NodePath("MainContainer/ButtonContainer/StartButton")
+options_button = NodePath("MainContainer/ButtonContainer/OptionsButton")
+quit_button = NodePath("MainContainer/QuitButton")
+
+[node name="MainContainer" type="MarginContainer" parent="." unique_id=46607296]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="TitleTexture" type="TextureRect" parent="MainContainer" unique_id=1757798788]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_0ebjn")
+
+[node name="QuitButton" type="Button" parent="MainContainer" unique_id=522656197]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "menu.button.quit"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer" unique_id=1478686774]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="StartButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1708409287]
+layout_mode = 2
+text = "menu.button.start"
+
+[node name="OptionsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1355347648]
+layout_mode = 2
+text = "menu.button.options"
+
+[node name="CreditsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=453070686]
+layout_mode = 2
+text = "menu.button.credits"
+
+[node name="VersionLabel" type="Label" parent="MainContainer" unique_id=1743209214]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "menu.label.version"
