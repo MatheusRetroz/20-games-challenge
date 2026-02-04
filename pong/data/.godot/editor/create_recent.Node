@@ -1,0 +1,14 @@
+Sprite2D
+CollisionShape2D
+CharacterBody2D
+CanvasModulate
+ColorRect
+TileMapLayer
+TileMap
+TextureRect
+Button
+Control
+CanvasLayer
+Node2D
+StaticBody2D
+Camera2D

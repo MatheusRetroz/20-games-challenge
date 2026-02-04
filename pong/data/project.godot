@@ -12,8 +12,34 @@ config_version=5
 
 config/name="Pong"
 config/tags=PackedStringArray("estudo")
+run/main_scene="uid://cd1nfee1uxkn8"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://common/": "gray",
+"res://scenes/": "blue"
+}
+
+[layer_names]
+
+2d_physics/layer_1="ground"
+2d_physics/layer_2="side"
+2d_physics/layer_3="player"
+2d_physics/layer_4="ball"
 
 [physics]
 
