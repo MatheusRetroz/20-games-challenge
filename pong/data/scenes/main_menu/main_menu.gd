@@ -16,12 +16,13 @@ var _fade_out_resource: TweenResource = null
 func _enter_tree() -> void:
 	main_container.modulate.a = 0.0
 	
-	if OS.get_name() == "Web":
-		quit_button.disabled = true
-		quit_button.visible = false
+	match OS.get_name():
+		"Web", "Android":
+			quit_button.disabled = true
+			quit_button.visible = false
 
 func _ready() -> void:
-	$MainContainer/Control/VersionLabel.text = "V" + MainCore.VERSION
+	$MainContainer/RightContainer/VersionLabel.text = "V" + MainCore.VERSION
 	
 	start_button.pressed.connect(_on_start_button_pressed)
 	options_button.pressed.connect(_on_options_button_pressed)

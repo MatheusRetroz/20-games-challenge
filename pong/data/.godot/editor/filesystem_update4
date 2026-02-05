@@ -5,3 +5,6 @@ res://common/shaders/grain.gdshader
 res://common/translations/language.en_US.translation
 res://core/main_core.gd
 res://scenes/main_menu/main_menu.gd
+res://scenes/main_scene/main_scene.tscn
+res://scenes/player/player.tscn
+res://scenes/player/player.gd
