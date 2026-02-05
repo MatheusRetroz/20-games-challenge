@@ -88,6 +88,7 @@ offset_bottom = 656.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "menu.label.version"
+horizontal_alignment = 2
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MainContainer" unique_id=1478686774]
 layout_mode = 2

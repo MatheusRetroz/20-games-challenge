@@ -21,6 +21,8 @@ func _enter_tree() -> void:
 		quit_button.visible = false
 
 func _ready() -> void:
+	$MainContainer/Control/VersionLabel.text = "V" + MainCore.VERSION
+	
 	start_button.pressed.connect(_on_start_button_pressed)
 	options_button.pressed.connect(_on_options_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)

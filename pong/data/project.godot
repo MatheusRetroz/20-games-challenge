@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://bke5sictcghq0"
 
 [autoload]
 
+MainCore="*uid://bb6vd8o15hx3g"
 ScreenManager="*uid://b8s6e8skrkis8"
 AudioManager="*uid://cqshwuofopls4"
 
@@ -48,6 +49,10 @@ folder_colors={
 
 theme/custom="uid://dgdu4d3dxmnb6"
 theme/custom_font="uid://bwvthg0itg1xe"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://common/translations/language.en_US.translation", "res://common/translations/language.pt_BR.translation")
 
 [layer_names]
 

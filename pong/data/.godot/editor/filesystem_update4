@@ -2,3 +2,6 @@ res://scenes/main_menu/main_menu.tscn
 res://common/themes/default_theme.tres
 res://common/shaders/canvas_border.gdshader
 res://common/shaders/grain.gdshader
+res://common/translations/language.en_US.translation
+res://core/main_core.gd
+res://scenes/main_menu/main_menu.gd
