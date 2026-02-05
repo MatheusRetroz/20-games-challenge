@@ -1,0 +1,4 @@
+res://scenes/main_menu/main_menu.tscn
+res://common/themes/default_theme.tres
+res://common/shaders/canvas_border.gdshader
+res://common/shaders/grain.gdshader

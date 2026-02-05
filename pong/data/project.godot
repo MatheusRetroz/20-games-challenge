@@ -16,6 +16,15 @@ run/main_scene="uid://cd1nfee1uxkn8"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://bke5sictcghq0"
+
+[autoload]
+
+ScreenManager="*uid://b8s6e8skrkis8"
+AudioManager="*uid://cqshwuofopls4"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2
@@ -31,12 +40,14 @@ window/stretch/aspect="expand"
 
 folder_colors={
 "res://common/": "gray",
-"res://scenes/": "blue"
+"res://core/": "blue",
+"res://scenes/": "pink"
 }
 
 [gui]
 
 theme/custom="uid://dgdu4d3dxmnb6"
+theme/custom_font="uid://bwvthg0itg1xe"
 
 [layer_names]
 
@@ -53,3 +64,4 @@ theme/custom="uid://dgdu4d3dxmnb6"
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.29951698, 0.29951698, 0.29951698, 0)

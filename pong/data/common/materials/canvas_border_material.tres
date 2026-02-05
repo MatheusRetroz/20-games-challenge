@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://4uym6iw7q7x2"]
+
+[ext_resource type="Shader" uid="uid://vhwa2qi33not" path="res://common/shaders/canvas_border.gdshader" id="1_q13ak"]
+
+[resource]
+shader = ExtResource("1_q13ak")
+shader_parameter/target_resolution = Vector2(1280, 720)
+shader_parameter/border_color = Color(0.1, 0.1, 0.1, 1)

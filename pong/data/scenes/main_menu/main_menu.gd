@@ -1,14 +1,17 @@
 extends Control
 
+# --- Export ---
 @export var main_container: Control = null
 @export_group("Buttons")
 @export var start_button: BaseButton = null
 @export var options_button: BaseButton = null
 @export var quit_button: BaseButton = null
 
+# --- Resources ---
 var _fade_in_resource: TweenResource = null
 var _fade_out_resource: TweenResource = null
 
+# ------ Init ------
 
 func _enter_tree() -> void:
 	main_container.modulate.a = 0.0
@@ -36,7 +39,8 @@ func _ready() -> void:
 	
 	_fade_in_resource.run_tween(main_container)
 
-# Signals
+# ------ Signals ------
+
 func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_scene/main_scene.tscn")
 

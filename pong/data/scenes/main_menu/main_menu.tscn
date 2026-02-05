@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://cd1nfee1uxkn8"]
 
 [ext_resource type="Script" uid="uid://b756sunwe7fbc" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
-[ext_resource type="Texture2D" uid="uid://f0utvxt0fri5" path="res://icon.svg" id="2_0ebjn"]
+[ext_resource type="Texture2D" uid="uid://dvqwexvsw1iyh" path="res://common/textures/title_screen/light.png" id="2_3ovsr"]
+[ext_resource type="Script" uid="uid://c8cgc1xo70fna" path="res://common/scripts/background_parallax.gd" id="2_5seab"]
+[ext_resource type="Texture2D" uid="uid://du2pp3vj3dga6" path="res://common/textures/title_screen/character_cucumber.png" id="4_lqpn7"]
+[ext_resource type="Texture2D" uid="uid://bqllx3u8wbi6s" path="res://common/textures/title_screen/floor.png" id="4_uqeha"]
+[ext_resource type="Texture2D" uid="uid://dgtfsjwrkunv6" path="res://common/textures/title_screen/character_cat.png" id="6_rrgl4"]
+[ext_resource type="Texture2D" uid="uid://vbqja8w30kw7" path="res://common/textures/title_screen/character_cat_hat.png" id="7_4xg86"]
+[ext_resource type="Texture2D" uid="uid://btbxwhkosl3rc" path="res://common/textures/title_screen/title.png" id="8_4xg86"]
 
 [node name="MainMenu" type="Control" unique_id=852214048 node_paths=PackedStringArray("main_container", "start_button", "options_button", "quit_button")]
 layout_mode = 3
@@ -14,7 +20,33 @@ script = ExtResource("1_fsom3")
 main_container = NodePath("MainContainer")
 start_button = NodePath("MainContainer/ButtonContainer/StartButton")
 options_button = NodePath("MainContainer/ButtonContainer/OptionsButton")
-quit_button = NodePath("MainContainer/QuitButton")
+quit_button = NodePath("MainContainer/Control/QuitButton")
+
+[node name="BackgroundParallax" type="Node2D" parent="." unique_id=1207456445 node_paths=PackedStringArray("nodes")]
+position = Vector2(640, 360)
+script = ExtResource("2_5seab")
+nodes = {
+NodePath("Light"): 0.25,
+NodePath("Floor"): 1.5,
+NodePath("CharacterCat"): 1.0,
+NodePath("CharacterCucumber"): 0.5,
+NodePath("CharacterCatHat"): 0.75
+}
+
+[node name="Light" type="Sprite2D" parent="BackgroundParallax" unique_id=2136490477]
+texture = ExtResource("2_3ovsr")
+
+[node name="CharacterCucumber" type="Sprite2D" parent="BackgroundParallax" unique_id=1930457839]
+texture = ExtResource("4_lqpn7")
+
+[node name="CharacterCat" type="Sprite2D" parent="BackgroundParallax" unique_id=1780160761]
+texture = ExtResource("6_rrgl4")
+
+[node name="CharacterCatHat" type="Sprite2D" parent="BackgroundParallax" unique_id=1083793959]
+texture = ExtResource("7_4xg86")
+
+[node name="Floor" type="Sprite2D" parent="BackgroundParallax" unique_id=462741281]
+texture = ExtResource("4_uqeha")
 
 [node name="MainContainer" type="MarginContainer" parent="." unique_id=46607296]
 layout_mode = 1
@@ -32,34 +64,54 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("2_0ebjn")
+texture = ExtResource("8_4xg86")
 
-[node name="QuitButton" type="Button" parent="MainContainer" unique_id=522656197]
+[node name="Control" type="Control" parent="MainContainer" unique_id=1936164816]
 layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MainContainer/Control" unique_id=522656197]
+layout_mode = 0
+offset_left = 1045.0
+offset_right = 1216.0
+offset_bottom = 43.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "menu.button.quit"
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer" unique_id=1478686774]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="StartButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1708409287]
-layout_mode = 2
-text = "menu.button.start"
-
-[node name="OptionsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1355347648]
-layout_mode = 2
-text = "menu.button.options"
-
-[node name="CreditsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=453070686]
-layout_mode = 2
-text = "menu.button.credits"
-
-[node name="VersionLabel" type="Label" parent="MainContainer" unique_id=1743209214]
-modulate = Color(1, 1, 1, 0.5)
-layout_mode = 2
+[node name="VersionLabel" type="Label" parent="MainContainer/Control" unique_id=1743209214]
+modulate = Color(1, 1, 1, 0.25)
+layout_mode = 0
+offset_left = 1054.0
+offset_top = 637.0
+offset_right = 1216.0
+offset_bottom = 656.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "menu.label.version"
+
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer" unique_id=1478686774]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="MainContainer/ButtonContainer" unique_id=50360686]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1708409287]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+keep_pressed_outside = true
+text = "menu.button.start"
+
+[node name="OptionsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1355347648]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+keep_pressed_outside = true
+text = "menu.button.options"
+
+[node name="CreditsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=453070686]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+keep_pressed_outside = true
+text = "menu.button.credits"

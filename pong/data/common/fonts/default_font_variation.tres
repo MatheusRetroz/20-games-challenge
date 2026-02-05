@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bwvthg0itg1xe"]
+
+[ext_resource type="FontFile" uid="uid://diankgxtcc531" path="res://common/fonts/free_cheese/free_cheese.ttf" id="1_oso5x"]
+
+[resource]
+base_font = ExtResource("1_oso5x")
