@@ -5,11 +5,18 @@
 [ext_resource type="Script" uid="uid://c8cgc1xo70fna" path="res://common/scripts/background_parallax.gd" id="2_5seab"]
 [ext_resource type="Texture2D" uid="uid://du2pp3vj3dga6" path="res://common/textures/title_screen/character_cucumber.png" id="4_lqpn7"]
 [ext_resource type="Texture2D" uid="uid://bqllx3u8wbi6s" path="res://common/textures/title_screen/floor.png" id="4_uqeha"]
+[ext_resource type="Texture2D" uid="uid://78tjatn30gmx" path="res://common/textures/title_screen/tennis_net.png" id="4_x2yjq"]
 [ext_resource type="Texture2D" uid="uid://dgtfsjwrkunv6" path="res://common/textures/title_screen/character_cat.png" id="6_rrgl4"]
 [ext_resource type="Texture2D" uid="uid://vbqja8w30kw7" path="res://common/textures/title_screen/character_cat_hat.png" id="7_4xg86"]
 [ext_resource type="Texture2D" uid="uid://btbxwhkosl3rc" path="res://common/textures/title_screen/title.png" id="8_4xg86"]
+[ext_resource type="PackedScene" uid="uid://dh1kyvwerx07l" path="res://scenes/options_menu/options_menu.tscn" id="9_thkx5"]
+[ext_resource type="PackedScene" uid="uid://ksjv1fe6csqy" path="res://scenes/character_menu/character_menu.tscn" id="10_qel0l"]
+[ext_resource type="PackedScene" uid="uid://b7sv7qwrmvhex" path="res://scenes/credits_menu/credits_menu.tscn" id="12_rrgl4"]
 
-[node name="MainMenu" type="Control" unique_id=852214048 node_paths=PackedStringArray("main_container", "start_button", "options_button", "quit_button")]
+[sub_resource type="ButtonGroup" id="ButtonGroup_qel0l"]
+allow_unpress = true
+
+[node name="MainMenu" type="Control" unique_id=852214048 node_paths=PackedStringArray("main_container", "start_button", "options_button", "credits_button", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +27,8 @@ script = ExtResource("1_fsom3")
 main_container = NodePath("MainContainer")
 start_button = NodePath("MainContainer/ButtonContainer/StartButton")
 options_button = NodePath("MainContainer/ButtonContainer/OptionsButton")
-quit_button = NodePath("MainContainer/RightContainer/QuitButton")
+credits_button = NodePath("MainContainer/ButtonContainer/CreditsButton")
+quit_button = NodePath("MainContainer/ButtonContainer/QuitButton")
 
 [node name="BackgroundParallax" type="Node2D" parent="." unique_id=1207456445 node_paths=PackedStringArray("nodes")]
 position = Vector2(640, 360)
@@ -30,11 +38,15 @@ NodePath("Light"): 0.25,
 NodePath("Floor"): 1.5,
 NodePath("CharacterCat"): 1.0,
 NodePath("CharacterCucumber"): 0.5,
-NodePath("CharacterCatHat"): 0.75
+NodePath("CharacterCatHat"): 0.75,
+NodePath("TennisNet"): 0.25
 }
 
 [node name="Light" type="Sprite2D" parent="BackgroundParallax" unique_id=2136490477]
 texture = ExtResource("2_3ovsr")
+
+[node name="TennisNet" type="Sprite2D" parent="BackgroundParallax" unique_id=2114275865]
+texture = ExtResource("4_x2yjq")
 
 [node name="CharacterCucumber" type="Sprite2D" parent="BackgroundParallax" unique_id=1930457839]
 texture = ExtResource("4_lqpn7")
@@ -69,50 +81,69 @@ texture = ExtResource("8_4xg86")
 [node name="RightContainer" type="Control" parent="MainContainer" unique_id=1936164816]
 layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="MainContainer/RightContainer" unique_id=522656197]
-layout_mode = 0
-offset_left = 1045.0
-offset_right = 1216.0
-offset_bottom = 43.0
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "menu.button.quit"
-
 [node name="VersionLabel" type="Label" parent="MainContainer/RightContainer" unique_id=1743209214]
 modulate = Color(1, 1, 1, 0.25)
 layout_mode = 0
-offset_left = 1054.0
+offset_left = 1149.0
 offset_top = 637.0
 offset_right = 1216.0
 offset_bottom = 656.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "menu.label.version"
+text = "version"
 horizontal_alignment = 2
 
 [node name="ButtonContainer" type="VBoxContainer" parent="MainContainer" unique_id=1478686774]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Separator" type="Control" parent="MainContainer/ButtonContainer" unique_id=50360686]
-custom_minimum_size = Vector2(0, 400)
+[node name="Separator_00" type="Control" parent="MainContainer/ButtonContainer" unique_id=50360686]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1708409287]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 keep_pressed_outside = true
 text = "menu.button.start"
+alignment = 0
+
+[node name="Separator_01" type="Control" parent="MainContainer/ButtonContainer" unique_id=1150682413]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [node name="OptionsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=1355347648]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 keep_pressed_outside = true
 text = "menu.button.options"
+alignment = 0
 
 [node name="CreditsButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=453070686]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 keep_pressed_outside = true
 text = "menu.button.credits"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="MainContainer/ButtonContainer" unique_id=522656197]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "menu.button.quit"
+alignment = 0
+
+[node name="CharacterMenu" parent="." unique_id=1706618056 instance=ExtResource("10_qel0l")]
+visible = false
+layout_mode = 1
+character_button_group = SubResource("ButtonGroup_qel0l")
+
+[node name="OptionsMenu" parent="." unique_id=37608241 instance=ExtResource("9_thkx5")]
+visible = false
+layout_mode = 1
+
+[node name="CreditsMenu" parent="." unique_id=3656688 instance=ExtResource("12_rrgl4")]
+visible = false
+layout_mode = 1

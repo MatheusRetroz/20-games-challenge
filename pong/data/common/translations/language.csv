@@ -3,3 +3,21 @@ menu.button.start,Start,Iniciar
 menu.button.options,Options,Configurações
 menu.button.credits,Credits,Créditos
 menu.button.quit,Quit,Sair
+,,
+menu.title.options,Options,Configurações
+,,
+options.title.screen,Screen,Tela
+options.title.sound,Sound,Som
+options.title.general,General,Geral
+,,
+options.label.window_mode,Window Mode,Modo Janela
+options.label.sound_main,Main,Principal
+options.label.sound_music,Music,Música
+options.label.sound_sfx,Sfx,Sfx
+options.label.language,Language,Linguagem
+,,
+options.window_mode.window,Window,Janela
+options.window_mode.fullscreen,Fullscreen,Tela Cheia
+,,
+gui.button.back,Back,Voltar
+gui.button.play,Play,Jogar

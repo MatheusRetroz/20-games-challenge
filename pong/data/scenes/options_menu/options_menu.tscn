@@ -1,0 +1,295 @@
+[gd_scene format=3 uid="uid://dh1kyvwerx07l"]
+
+[ext_resource type="Script" uid="uid://c7qtt4txpcqvc" path="res://scenes/options_menu/options_menu.gd" id="1_sglii"]
+[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options_background.png" id="2_01rrm"]
+[ext_resource type="Script" uid="uid://dvq2lwwromwis" path="res://common/scripts/spin_button.gd" id="2_44mp6"]
+[ext_resource type="Texture2D" uid="uid://cpbnl22hfhsxs" path="res://common/textures/panel_background_round.png" id="3_k6vuu"]
+[ext_resource type="Texture2D" uid="uid://c4b481aaoc2k5" path="res://common/textures/buttons/spin/button_less_normal.png" id="3_rwie7"]
+[ext_resource type="Texture2D" uid="uid://crbms0nc7st1b" path="res://common/textures/buttons/spin/button_less_pressed.png" id="4_gairj"]
+[ext_resource type="Texture2D" uid="uid://c563wwn40u0q0" path="res://common/textures/panel_background.png" id="4_nlbbo"]
+[ext_resource type="Texture2D" uid="uid://ifgrj8fkrf5s" path="res://common/textures/buttons/spin/button_less_hover.png" id="5_g2qy4"]
+[ext_resource type="Texture2D" uid="uid://ba5yerxdww4ku" path="res://common/textures/buttons/spin/button_less_disabled.png" id="6_g2qy4"]
+[ext_resource type="Texture2D" uid="uid://bt0mo3rkk76jy" path="res://common/textures/buttons/spin/button_more_normal.png" id="6_hvpkh"]
+[ext_resource type="Texture2D" uid="uid://cspa6v2gxyog6" path="res://common/textures/buttons/spin/button_more_pressed.png" id="7_01rrm"]
+[ext_resource type="Texture2D" uid="uid://b6y5cqlsy3og7" path="res://common/textures/buttons/spin/button_more_hover.png" id="8_k6vuu"]
+[ext_resource type="Texture2D" uid="uid://5bi1hllxcd1r" path="res://common/textures/buttons/spin/button_more_disabled.png" id="10_hvpkh"]
+[ext_resource type="Shortcut" uid="uid://cmkxxa3fjegge" path="res://common/shortcuts/cancel_shortcut.tres" id="14_mwknw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvpkh"]
+texture = ExtResource("3_k6vuu")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+expand_margin_left = 16.0
+expand_margin_top = 16.0
+expand_margin_right = 16.0
+expand_margin_bottom = 16.0
+modulate_color = Color(0.4788676, 0.4788676, 0.4788676, 0.8)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mn0hn"]
+texture = ExtResource("4_nlbbo")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[node name="OptionsMenu" type="Control" unique_id=37608241 node_paths=PackedStringArray("language_button", "window_mode_spin", "sound_main_slider", "sound_music_slider", "sound_sfx_slider", "back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sglii")
+language_button = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer/SpinButton")
+window_mode_spin = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer/SpinButton")
+sound_main_slider = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MainContainer/HBoxContainer/HSlider")
+sound_music_slider = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MusicContainer/HBoxContainer/HSlider")
+sound_sfx_slider = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/SfxContainer/HBoxContainer/HSlider")
+back_button = NodePath("MarginContainer/MainContainer/BackButton")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1690537787]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_01rrm")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2054820638]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="MainContainer" type="VBoxContainer" parent="MarginContainer" unique_id=960178662]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/MainContainer" unique_id=2095171298]
+modulate = Color(0.3764706, 0.3764706, 0.3764706, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "menu.title.options"
+horizontal_alignment = 1
+
+[node name="Separator" type="Control" parent="MarginContainer/MainContainer" unique_id=2006702028]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="SettingsContainer" type="PanelContainer" parent="MarginContainer/MainContainer" unique_id=1073767990]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_hvpkh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer" unique_id=1422049348]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LanguageContainer" type="PanelContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=643824818]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_mn0hn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer" unique_id=197152370]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer" unique_id=1522627951]
+layout_mode = 2
+text = "options.label.language"
+
+[node name="SpinButton" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer" unique_id=2032792305 node_paths=PackedStringArray("left_button", "right_button", "label")]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("2_44mp6")
+left_button = NodePath("LeftButton")
+right_button = NodePath("RightButton")
+label = NodePath("Label")
+values = Array[String](["English", "Portugues"])
+
+[node name="LeftButton" type="TextureButton" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer/SpinButton" unique_id=987400715]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_rwie7")
+texture_pressed = ExtResource("4_gairj")
+texture_hover = ExtResource("5_g2qy4")
+texture_disabled = ExtResource("6_g2qy4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer/SpinButton" unique_id=1792041424]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Portugues"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightButton" type="TextureButton" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer/SpinButton" unique_id=2016423370]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_hvpkh")
+texture_pressed = ExtResource("7_01rrm")
+texture_hover = ExtResource("8_k6vuu")
+texture_disabled = ExtResource("10_hvpkh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ScreenLabel" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=1752683442]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "options.title.screen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WindowModeContainer" type="PanelContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=2136966588]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_mn0hn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer" unique_id=805666216]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer" unique_id=1979050063]
+layout_mode = 2
+text = "options.label.window_mode"
+
+[node name="SpinButton" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer" unique_id=1439852649 node_paths=PackedStringArray("left_button", "right_button", "label")]
+layout_mode = 2
+size_flags_horizontal = 10
+script = ExtResource("2_44mp6")
+left_button = NodePath("LeftButton")
+right_button = NodePath("RightButton")
+label = NodePath("Label")
+values = Array[String](["options.window_mode.window", "options.window_mode.fullscreen"])
+
+[node name="LeftButton" type="TextureButton" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer/SpinButton" unique_id=447997602]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_rwie7")
+texture_pressed = ExtResource("4_gairj")
+texture_hover = ExtResource("5_g2qy4")
+texture_disabled = ExtResource("6_g2qy4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer/SpinButton" unique_id=1318976409]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "options.window_mode.window"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightButton" type="TextureButton" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer/SpinButton" unique_id=1332328084]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_hvpkh")
+texture_pressed = ExtResource("7_01rrm")
+texture_hover = ExtResource("8_k6vuu")
+texture_disabled = ExtResource("10_hvpkh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SoundLabel" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=450141270]
+modulate = Color(1, 1, 1, 0.1)
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+text = "options.title.sound"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainContainer" type="PanelContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=192181448]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_mn0hn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MainContainer" unique_id=997741647]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MainContainer/HBoxContainer" unique_id=1894998032]
+layout_mode = 2
+text = "options.label.sound_main"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MainContainer/HBoxContainer" unique_id=1783674063]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../../../WindowModeContainer/HBoxContainer/SpinButton/LeftButton")
+focus_next = NodePath("../../../LanguageContainer/HBoxContainer/SpinButton/RightButton")
+focus_previous = NodePath("../../../LanguageContainer/HBoxContainer/SpinButton/RightButton")
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="Separator" type="Control" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MainContainer/HBoxContainer" unique_id=1577939806]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="MusicContainer" type="PanelContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=941815166]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_mn0hn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MusicContainer" unique_id=843685392]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MusicContainer/HBoxContainer" unique_id=1032922104]
+layout_mode = 2
+text = "options.label.sound_music"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MusicContainer/HBoxContainer" unique_id=1390639859]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="Separator" type="Control" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MusicContainer/HBoxContainer" unique_id=238580494]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="SfxContainer" type="PanelContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer" unique_id=1884300869]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_mn0hn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/SfxContainer" unique_id=1920226323]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/SfxContainer/HBoxContainer" unique_id=1321484703]
+layout_mode = 2
+text = "options.label.sound_sfx"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/SfxContainer/HBoxContainer" unique_id=1733697803]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+max_value = 2.0
+step = 0.01
+value = 1.0
+
+[node name="Separator" type="Control" parent="MarginContainer/MainContainer/SettingsContainer/VBoxContainer/SfxContainer/HBoxContainer" unique_id=352066348]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/MainContainer" unique_id=1294310459]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+shortcut = ExtResource("14_mwknw")
+text = "gui.button.back"

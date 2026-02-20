@@ -1,10 +1,15 @@
-res://scenes/player/
+res://scenes/character_menu/src/
+res://common/shaders/
+res://common/shortcuts/
+res://scenes/credits_menu/
+res://common/scripts/
 res://common/textures/
+res://scenes/options_menu/
+res://scenes/player/
 res://core/
 res://common/translations/
 res://common/materials/
 res://common/fonts/
-res://common/scripts/
 res://common/themes/
 res://scenes/main_menu/
 res://scenes/main_scene/

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b7sv7qwrmvhex"]
+
+[ext_resource type="Script" uid="uid://d1wytrjbpdwjg" path="res://scenes/credits_menu/credits_menu.gd" id="1_hhhe6"]
+[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options_background.png" id="2_344tv"]
+[ext_resource type="Shortcut" uid="uid://cmkxxa3fjegge" path="res://common/shortcuts/cancel_shortcut.tres" id="3_5ww45"]
+
+[node name="CreditsMenu" type="Control" unique_id=3656688 node_paths=PackedStringArray("back_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hhhe6")
+back_button = NodePath("MarginContainer/BackButton")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1583123851]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_344tv")
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2048360742]
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=2100446906]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer" unique_id=680627124]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+shortcut = ExtResource("3_5ww45")
+text = "gui.button.back"
