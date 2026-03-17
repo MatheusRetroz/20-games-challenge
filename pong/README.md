@@ -1,4 +1,4 @@
-![title](/assets/title.png)
+![title](https://img.itch.zone/aW1nLzI2MTczMjcyLnBuZw==/original/dwuZV5.png)
 
 A clone/remake of the classic arcade game Pong.
 
@@ -8,5 +8,6 @@ The entire process of creating this game was “turbulent” because, unfortunat
 
 - Play/Dowload: [itch.io](https://retrozito.itch.io/pong)
 
-![screenshot_00](/assets/screenshot_01.png)
-![screenshot_00](/assets/screenshot_02.png)
+![screenshot_00](https://img.itch.zone/aW1hZ2UvNDM4NTYwNS8yNjE3MzEzMC5wbmc=/original/L0JTDf.png)
+![screenshot_01](https://img.itch.zone/aW1hZ2UvNDM4NTYwNS8yNjE3MzEzMS5wbmc=/original/%2BjtGcm.png)
+![screenshot_02](https://img.itch.zone/aW1hZ2UvNDM4NTYwNS8yNjE3MzEzNC5wbmc=/original/2vmnwX.png)

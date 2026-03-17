@@ -11,4 +11,3 @@ The games are being made in the [Godot Engine](https://godotengine.org).
 
 [1. Pong](https://github.com/MatheusRetroz/20-games-challenge/tree/master/pong)
     - Status: Released
-    - Play/Dowload: [itch.io](https://retrozito.itch.io/pong)
