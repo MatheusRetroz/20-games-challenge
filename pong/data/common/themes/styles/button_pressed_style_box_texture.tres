@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://cd8lirghisbp"]
+
+[ext_resource type="Texture2D" uid="uid://c0nuyn83vcx35" path="res://common/textures/buttons/init/button_init_pressed.png" id="1_pc77c"]
+
+[resource]
+texture = ExtResource("1_pc77c")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

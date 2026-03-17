@@ -1,32 +1,43 @@
 extends Node
 
-# --- Consts ---
-const HOVER_STREAM: AudioStream = preload("res://common/audios/ui/kenney_sounds/click_003.ogg")
-const PRESSED_STREAM: AudioStream = preload("res://common/audios/ui/kenney_sounds/click_002.ogg")
+## Singleton de gerenciamento de áudio
+## Foi simplificado, resumindo sua função apenas para o controle do som da UI, como botões e sliders
+## A Ideia era elaborar mais, adicionando o controle de efeitos, porem simplifiquei para manter o controle do áudio centralizado a cena.
 
-# --- Volume db ---
-var ui_db: float = linear_to_db(0.01)
-var game_db: float = 0.0
 
-# --- Sound State (on/off) ---
-var ui_sound_enabled: bool = true
+# ------------------------ CONSTS ------------------------
 
-# --- Playback ---
+const HOVER_STREAM: AudioStream = preload("res://common/audios/ui/hover.mp3")
+const PRESSED_STREAM: AudioStream = preload("res://common/audios/ui/pressed.mp3")
+
+# ------------------------ VARS ------------------------
+
+# Volume db
+var ui_db: float = linear_to_db(0.1)
+# Playback
 var ui_playback: AudioStreamPlaybackPolyphonic = null
-var game_playback: AudioStreamPlaybackPolyphonic = null
 
-# ------ Init ------
+
+# ======================== INIT ========================
 
 func _enter_tree() -> void:
 	get_tree().node_added.connect(_on_node_added)
 
 func _ready() -> void:
-	ui_playback = _get_playback("UIAudioStreamPlayer", &"Sfx")
-	game_playback = _get_playback("GameAudioStreamPlayer")
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	ui_playback = _create_playback("UIAudioStreamPlayer", &"UI")
 
-# ------ Funcs ------
+# ======================== PUBLIC FUNCS ========================
 
-func _get_playback(title: String, bus: String = &"Master", polyphony: int = 32) -> AudioStreamPlaybackPolyphonic:
+func play_sound(key: String, stream: AudioStream, db: float = 0.0, pitch_scale: float = 1.0) -> int:
+	match key:
+		&"ui":
+			return ui_playback.play_stream(stream, 0.0, ui_db - db, pitch_scale)
+	return -1
+
+# ======================== PRIVATE FUNCS ========================
+
+func _create_playback(title: String, bus: String = &"Master", polyphony: int = 32) -> AudioStreamPlaybackPolyphonic:
 	var player := AudioStreamPlayer.new()
 	player.name = title
 	player.bus = bus
@@ -39,11 +50,7 @@ func _get_playback(title: String, bus: String = &"Master", polyphony: int = 32) 
 	
 	return player.get_stream_playback()
 
-func _play_sound(stream: AudioStream) -> void:
-	if ui_sound_enabled:
-		ui_playback.play_stream(stream, 0.0, ui_db)
-
-# ------ Signals ------
+# ======================== SIGNALS ========================
 
 func _on_node_added(node: Node) -> void:
 	if not (node is BaseButton or node is Slider):
@@ -51,6 +58,7 @@ func _on_node_added(node: Node) -> void:
 	
 	node.mouse_entered.connect(_on_node_mouse_entered.bind(node))
 	node.focus_mode = Control.FOCUS_NONE
+	
 	if node is BaseButton:
 		node.pressed.connect(_on_node_pressed)
 	elif node is Slider:
@@ -61,7 +69,7 @@ func _on_node_mouse_entered(node: Control) -> void:
 		if node.disabled: return
 	elif node is Slider:
 		if not node.editable: return
-	_play_sound(HOVER_STREAM)
+	play_sound(&"ui", HOVER_STREAM)
 
 func _on_node_pressed() -> void:
-	_play_sound(PRESSED_STREAM)
+	play_sound(&"ui", PRESSED_STREAM)

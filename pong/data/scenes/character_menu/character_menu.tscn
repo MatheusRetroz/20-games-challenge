@@ -1,63 +1,40 @@
 [gd_scene format=3 uid="uid://ksjv1fe6csqy"]
 
-[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options_background.png" id="1_d7p5s"]
+[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options/options_background.png" id="1_d7p5s"]
 [ext_resource type="Script" uid="uid://jnwospbokb14" path="res://scenes/character_menu/character_menu.gd" id="1_r5v8n"]
-[ext_resource type="Script" uid="uid://c8cgc1xo70fna" path="res://common/scripts/background_parallax.gd" id="3_4jpr2"]
+[ext_resource type="Script" uid="uid://c8cgc1xo70fna" path="res://common/scripts/parallax_container.gd" id="3_4jpr2"]
 [ext_resource type="Script" uid="uid://dicns4ktsht3g" path="res://scenes/character_menu/src/character_button.gd" id="3_krdkm"]
-[ext_resource type="Texture2D" uid="uid://cta88mxhwtwi4" path="res://common/textures/buttons/init/button_init_normal.png" id="3_umjou"]
-[ext_resource type="Script" uid="uid://b03dwsh14ic6k" path="res://common/scripts/character_info.gd" id="4_3b7xd"]
 [ext_resource type="Texture2D" uid="uid://bc3pbv14e2ebu" path="res://common/textures/character_select/frame_background.png" id="4_krdkm"]
-[ext_resource type="Texture2D" uid="uid://dgv1k8np3pxwn" path="res://common/textures/buttons/init/button_init_hover.png" id="4_pb7s3"]
-[ext_resource type="Texture2D" uid="uid://c0nuyn83vcx35" path="res://common/textures/buttons/init/button_init_pressed.png" id="4_ud2cc"]
 [ext_resource type="Texture2D" uid="uid://diryw2benhn0s" path="res://common/textures/character_select/cat/cat_body.png" id="5_tebxg"]
 [ext_resource type="Texture2D" uid="uid://dx8simlcw7le1" path="res://common/textures/character_select/cat/cat_hat.png" id="6_r1hyo"]
 [ext_resource type="Texture2D" uid="uid://5rnwpk38s5jv" path="res://common/textures/character_select/frame.png" id="7_hhltm"]
 [ext_resource type="Texture2D" uid="uid://d0myod51hr44p" path="res://common/textures/character_select/cat/cat_mouth.png" id="7_r1hyo"]
 [ext_resource type="Shortcut" uid="uid://cmkxxa3fjegge" path="res://common/shortcuts/cancel_shortcut.tres" id="9_tebxg"]
 [ext_resource type="Texture2D" uid="uid://bv5t5ymd3a81p" path="res://common/textures/character_select/cat/cat_hand.png" id="10_hhltm"]
-[ext_resource type="Texture2D" uid="uid://b5k1bx8kt22gq" path="res://common/textures/character_select/pepino/pepino_body.png" id="11_wgka6"]
-[ext_resource type="Texture2D" uid="uid://bjmcowwoh7ilp" path="res://common/textures/character_select/pepino/pepino_hand.png" id="12_mdcb1"]
-[ext_resource type="Texture2D" uid="uid://cpqwus88tgnf1" path="res://common/textures/character_select/pepino/pepino_hat.png" id="12_umjou"]
+[ext_resource type="Texture2D" uid="uid://f2ctjqbph5ar" path="res://common/textures/character_select/label_background.png" id="11_3b7xd"]
+[ext_resource type="Texture2D" uid="uid://b5k1bx8kt22gq" path="res://common/textures/character_select/cucumber/cucumber_body.png" id="11_wgka6"]
+[ext_resource type="Texture2D" uid="uid://bjmcowwoh7ilp" path="res://common/textures/character_select/cucumber/cucumber_hand.png" id="12_mdcb1"]
+[ext_resource type="Texture2D" uid="uid://cpqwus88tgnf1" path="res://common/textures/character_select/cucumber/cucumber_hat.png" id="12_umjou"]
+[ext_resource type="Texture2D" uid="uid://dd651ifat41xg" path="res://common/textures/character_select/cucumber/cucumber_mouth.png" id="13_8qttp"]
+[ext_resource type="StyleBox" uid="uid://c00s26krafwa3" path="res://common/themes/styles/button_normal_style_box_texture.tres" id="14_3b7xd"]
+[ext_resource type="StyleBox" uid="uid://cd8lirghisbp" path="res://common/themes/styles/button_pressed_style_box_texture.tres" id="15_8qttp"]
+[ext_resource type="StyleBox" uid="uid://0hmkphc40ay" path="res://common/themes/styles/button_hover_style_box_texture.tres" id="17_x2c6w"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_krdkm"]
 allow_unpress = true
 
-[sub_resource type="Resource" id="Resource_8qttp"]
-script = ExtResource("4_3b7xd")
-metadata/_custom_type_script = "uid://b03dwsh14ic6k"
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3b7xd"]
 
-[sub_resource type="Resource" id="Resource_3b7xd"]
-script = ExtResource("4_3b7xd")
-metadata/_custom_type_script = "uid://b03dwsh14ic6k"
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pb7s3"]
-texture = ExtResource("3_umjou")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qttp"]
+texture = ExtResource("11_3b7xd")
+texture_margin_left = 16.0
+texture_margin_top = 8.0
+texture_margin_right = 16.0
+texture_margin_bottom = 8.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3b7xd"]
-texture = ExtResource("4_ud2cc")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ud2cc"]
-texture = ExtResource("4_pb7s3")
-texture_margin_left = 12.0
-texture_margin_top = 12.0
-texture_margin_right = 12.0
-texture_margin_bottom = 12.0
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
-
-[node name="CharacterMenu" type="Control" unique_id=1706618056 node_paths=PackedStringArray("init_button", "back_button")]
+[node name="CharacterMenu" type="Control" unique_id=1706618056 node_paths=PackedStringArray("play_button", "back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r5v8n")
-init_button = NodePath("MarginContainer/InitButton")
+play_button = NodePath("MarginContainer/PlayButton")
 back_button = NodePath("MarginContainer/BackButton")
 character_button_group = SubResource("ButtonGroup_krdkm")
 
@@ -91,28 +68,29 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 30
 
-[node name="CatButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1221536316 node_paths=PackedStringArray("background_sprite", "toggled_sprites", "animation_sprites")]
+[node name="CatButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1221536316 node_paths=PackedStringArray("name_label", "background_sprite", "toggled_sprites", "animation_sprites")]
 custom_minimum_size = Vector2(200, 223)
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_krdkm")
 script = ExtResource("3_krdkm")
-character_info = SubResource("Resource_8qttp")
+character_type = 1
+name_label = NodePath("LabelContainer/Label")
 background_sprite = NodePath("Cat/FrameBackground")
 toggled_sprites = [NodePath("Cat/FrameBackground/Body/Mouth")]
 animation_sprites = [NodePath("Cat/FrameBackground/Body"), NodePath("Cat/Hat"), NodePath("Cat/FrameBackground/Hand")]
 
-[node name="Cat" type="Node2D" parent="MarginContainer/HBoxContainer/CatButton" unique_id=41076311 node_paths=PackedStringArray("nodes")]
+[node name="Cat" type="Node2D" parent="MarginContainer/HBoxContainer/CatButton" unique_id=41076311 node_paths=PackedStringArray("layers")]
 position = Vector2(101, 110)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("3_4jpr2")
-min_motion = Vector2(-20, -20)
-max_motion = Vector2(20, 20)
-nodes = {
-NodePath("Hat"): 1.0,
-NodePath("FrameBackground/Body"): 0.75,
-NodePath("FrameBackground/Hand"): 0.5
+layers = {
+NodePath("FrameBackground/Body"): 0.5,
+NodePath("FrameBackground/Hand"): 0.75,
+NodePath("Hat"): 1.0
 }
+negative_motion = Vector2(-25, -25)
+positive_motion = Vector2(25, 25)
 
 [node name="FrameBackground" type="Sprite2D" parent="MarginContainer/HBoxContainer/CatButton/Cat" unique_id=1880739679]
 clip_children = 2
@@ -134,56 +112,103 @@ texture = ExtResource("7_hhltm")
 [node name="Hat" type="Sprite2D" parent="MarginContainer/HBoxContainer/CatButton/Cat" unique_id=1176180614]
 texture = ExtResource("6_r1hyo")
 
-[node name="PepinoButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1901352115 node_paths=PackedStringArray("background_sprite", "animation_sprites")]
+[node name="LabelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/CatButton" unique_id=520021945]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 208.0
+offset_right = 99.0
+offset_bottom = 243.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3b7xd")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CatButton/LabelContainer" unique_id=456320850]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_8qttp")
+text = "Cat"
+horizontal_alignment = 1
+
+[node name="CucumberButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1901352115 node_paths=PackedStringArray("name_label", "background_sprite", "toggled_sprites", "animation_sprites")]
 custom_minimum_size = Vector2(200, 223)
 layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_krdkm")
 script = ExtResource("3_krdkm")
-locked = true
-character_info = SubResource("Resource_3b7xd")
-background_sprite = NodePath("Pepino/FrameBackground")
-animation_sprites = [NodePath("Pepino/FrameBackground/Body"), NodePath("Pepino/FrameBackground/Hand"), NodePath("Pepino/Hat")]
-toggled_color = Color(0.2873225, 0.65209335, 0.21120313, 1)
+character_type = 2
+name_label = NodePath("LabelContainer/Label")
+background_sprite = NodePath("Cucumber/FrameBackground")
+toggled_sprites = [NodePath("Cucumber/FrameBackground/Body/Mouth")]
+animation_sprites = [NodePath("Cucumber/FrameBackground/Body"), NodePath("Cucumber/FrameBackground/Hand"), NodePath("Cucumber/Hat")]
+toggled_color = Color(0.48235294, 0.5411765, 0.3647059, 1)
 
-[node name="Pepino" type="Node2D" parent="MarginContainer/HBoxContainer/PepinoButton" unique_id=551845416 node_paths=PackedStringArray("nodes")]
+[node name="Cucumber" type="Node2D" parent="MarginContainer/HBoxContainer/CucumberButton" unique_id=551845416 node_paths=PackedStringArray("layers")]
 position = Vector2(101, 110)
 scale = Vector2(0.75, 0.75)
 script = ExtResource("3_4jpr2")
-min_motion = Vector2(-20, -20)
-max_motion = Vector2(20, 20)
-nodes = {
-NodePath("FrameBackground/Body"): 0.75,
-NodePath("FrameBackground/Hand"): 0.5,
-NodePath("Hat"): 1.0
+layers = {
+NodePath("FrameBackground/Body"): 0.5,
+NodePath("FrameBackground/Hand"): 0.75,
+NodePath("Hat"): 0.75
 }
+negative_motion = Vector2(-25, -25)
+positive_motion = Vector2(25, 25)
 
-[node name="FrameBackground" type="Sprite2D" parent="MarginContainer/HBoxContainer/PepinoButton/Pepino" unique_id=451122784]
+[node name="FrameBackground" type="Sprite2D" parent="MarginContainer/HBoxContainer/CucumberButton/Cucumber" unique_id=451122784]
 clip_children = 2
 texture = ExtResource("4_krdkm")
 
-[node name="Body" type="Sprite2D" parent="MarginContainer/HBoxContainer/PepinoButton/Pepino/FrameBackground" unique_id=710863833]
+[node name="Body" type="Sprite2D" parent="MarginContainer/HBoxContainer/CucumberButton/Cucumber/FrameBackground" unique_id=710863833]
 texture = ExtResource("11_wgka6")
 
-[node name="Hand" type="Sprite2D" parent="MarginContainer/HBoxContainer/PepinoButton/Pepino/FrameBackground" unique_id=501493914]
+[node name="Mouth" type="Sprite2D" parent="MarginContainer/HBoxContainer/CucumberButton/Cucumber/FrameBackground/Body" unique_id=227618585]
+visible = false
+texture = ExtResource("13_8qttp")
+
+[node name="Hand" type="Sprite2D" parent="MarginContainer/HBoxContainer/CucumberButton/Cucumber/FrameBackground" unique_id=501493914]
 texture = ExtResource("12_mdcb1")
 
-[node name="Frame" type="Sprite2D" parent="MarginContainer/HBoxContainer/PepinoButton/Pepino" unique_id=1008414922]
+[node name="Frame" type="Sprite2D" parent="MarginContainer/HBoxContainer/CucumberButton/Cucumber" unique_id=1008414922]
 texture = ExtResource("7_hhltm")
 
-[node name="Hat" type="Sprite2D" parent="MarginContainer/HBoxContainer/PepinoButton/Pepino" unique_id=1500952200]
+[node name="Hat" type="Sprite2D" parent="MarginContainer/HBoxContainer/CucumberButton/Cucumber" unique_id=1500952200]
 texture = ExtResource("12_umjou")
 
-[node name="InitButton" type="Button" parent="MarginContainer" unique_id=1717494910]
+[node name="LabelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/CucumberButton" unique_id=1045813465]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 208.0
+offset_right = 99.0
+offset_bottom = 243.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3b7xd")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CucumberButton/LabelContainer" unique_id=1897505307]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_8qttp")
+text = "???"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="MarginContainer" unique_id=1717494910]
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxTexture_pb7s3")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_3b7xd")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ud2cc")
+theme_override_styles/normal = ExtResource("14_3b7xd")
+theme_override_styles/pressed = ExtResource("15_8qttp")
+theme_override_styles/hover = ExtResource("17_x2c6w")
 text = "gui.button.play"
 
 [node name="BackButton" type="Button" parent="MarginContainer" unique_id=1139116412]
@@ -191,4 +216,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 shortcut = ExtResource("9_tebxg")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 text = "gui.button.back"

@@ -1,40 +1,41 @@
 extends Control
 
-# --- Export ---
-@export var init_button: BaseButton = null
+
+# ------------------------ EXPORT ------------------------
+
+@export var play_button: BaseButton = null
 @export var back_button: BaseButton = null
-@export_group("Group")
 @export var character_button_group: ButtonGroup = null
 
-var _current_character: CharacterInfo = null
 
-# ------ Init ------
+# ======================== INIT ========================
 
 func _ready() -> void:
 	MainCore.set_menu(&"character", self)
 	
-	init_button.visible = false
+	play_button.visible = false
 	
 	character_button_group.pressed.connect(_on_character_group_pressed)
-	init_button.pressed.connect(_on_init_button_pressed)
+	play_button.pressed.connect(_on_play_button_pressed)
 	back_button.pressed.connect(_on_back_button_pressed)
 
-# ------ Signals ------
+# ======================== SIGNALS ========================
 
 func _on_character_group_pressed(button: BaseButton) -> void:
-	if button is CharacterButton:
-		_current_character = button.character_info if button.button_pressed else null
-	
-	init_button.visible = button.button_pressed
+	play_button.visible = button.button_pressed
+	CharacterInfo.current_resource = button.get("character_info")
 
-func _on_init_button_pressed() -> void:
-	if _current_character:
-		get_tree().change_scene_to_file("res://scenes/main_scene/main_scene.tscn")
+func _on_play_button_pressed() -> void:
+	await ScreenManager.set_transition(true)
+	await get_tree().create_timer(0.5).timeout
+	MainCore.go_to_scene("res://scenes/main_scene/main_scene.tscn")
 
 func _on_back_button_pressed() -> void:
+	if ScreenManager.in_transition(): return
+	
 	var button: BaseButton = character_button_group.get_pressed_button()
 	if button:
-		init_button.visible = false
-		_current_character = null
+		play_button.visible = false
 		button.button_pressed = false
+		CharacterInfo.current_resource = null
 	MainCore.go_to_menu(&"main")

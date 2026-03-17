@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b756sunwe7fbc" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
 [ext_resource type="Texture2D" uid="uid://dvqwexvsw1iyh" path="res://common/textures/title_screen/light.png" id="2_3ovsr"]
-[ext_resource type="Script" uid="uid://c8cgc1xo70fna" path="res://common/scripts/background_parallax.gd" id="2_5seab"]
+[ext_resource type="Script" uid="uid://c8cgc1xo70fna" path="res://common/scripts/parallax_container.gd" id="2_5seab"]
 [ext_resource type="Texture2D" uid="uid://du2pp3vj3dga6" path="res://common/textures/title_screen/character_cucumber.png" id="4_lqpn7"]
 [ext_resource type="Texture2D" uid="uid://bqllx3u8wbi6s" path="res://common/textures/title_screen/floor.png" id="4_uqeha"]
 [ext_resource type="Texture2D" uid="uid://78tjatn30gmx" path="res://common/textures/title_screen/tennis_net.png" id="4_x2yjq"]
+[ext_resource type="Texture2D" uid="uid://gexsmyk60yfl" path="res://common/textures/title_screen/character_cucumber_hat.png" id="6_dn3lk"]
 [ext_resource type="Texture2D" uid="uid://dgtfsjwrkunv6" path="res://common/textures/title_screen/character_cat.png" id="6_rrgl4"]
 [ext_resource type="Texture2D" uid="uid://vbqja8w30kw7" path="res://common/textures/title_screen/character_cat_hat.png" id="7_4xg86"]
 [ext_resource type="Texture2D" uid="uid://btbxwhkosl3rc" path="res://common/textures/title_screen/title.png" id="8_4xg86"]
@@ -13,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ksjv1fe6csqy" path="res://scenes/character_menu/character_menu.tscn" id="10_qel0l"]
 [ext_resource type="PackedScene" uid="uid://b7sv7qwrmvhex" path="res://scenes/credits_menu/credits_menu.tscn" id="12_rrgl4"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_qel0l"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_rrgl4"]
 allow_unpress = true
 
 [node name="MainMenu" type="Control" unique_id=852214048 node_paths=PackedStringArray("main_container", "start_button", "options_button", "credits_button", "quit_button")]
@@ -30,34 +31,45 @@ options_button = NodePath("MainContainer/ButtonContainer/OptionsButton")
 credits_button = NodePath("MainContainer/ButtonContainer/CreditsButton")
 quit_button = NodePath("MainContainer/ButtonContainer/QuitButton")
 
-[node name="BackgroundParallax" type="Node2D" parent="." unique_id=1207456445 node_paths=PackedStringArray("nodes")]
+[node name="BackgroundParallax" type="Node2D" parent="." unique_id=1207456445 node_paths=PackedStringArray("layers")]
 position = Vector2(640, 360)
 script = ExtResource("2_5seab")
-nodes = {
-NodePath("Light"): 0.25,
-NodePath("Floor"): 1.5,
-NodePath("CharacterCat"): 1.0,
+layers = {
+NodePath("Light"): 0.1,
+NodePath("TennisNet"): 0.25,
+NodePath("CharacterCucumberHat"): 0.4,
 NodePath("CharacterCucumber"): 0.5,
-NodePath("CharacterCatHat"): 0.75,
-NodePath("TennisNet"): 0.25
+NodePath("CharacterCatHat"): 0.5,
+NodePath("CharacterCat"): 1.0,
+NodePath("Floor"): 1.25
 }
 
 [node name="Light" type="Sprite2D" parent="BackgroundParallax" unique_id=2136490477]
+position = Vector2(0.8538897, -9.554281)
 texture = ExtResource("2_3ovsr")
 
 [node name="TennisNet" type="Sprite2D" parent="BackgroundParallax" unique_id=2114275865]
+position = Vector2(2.1347244, -23.885704)
 texture = ExtResource("4_x2yjq")
 
 [node name="CharacterCucumber" type="Sprite2D" parent="BackgroundParallax" unique_id=1930457839]
+position = Vector2(4.2694488, -47.771408)
 texture = ExtResource("4_lqpn7")
 
-[node name="CharacterCat" type="Sprite2D" parent="BackgroundParallax" unique_id=1780160761]
-texture = ExtResource("6_rrgl4")
+[node name="CharacterCucumberHat" type="Sprite2D" parent="BackgroundParallax" unique_id=1344260328]
+position = Vector2(3.4155588, -38.217125)
+texture = ExtResource("6_dn3lk")
 
 [node name="CharacterCatHat" type="Sprite2D" parent="BackgroundParallax" unique_id=1083793959]
+position = Vector2(4.2694488, -47.771408)
 texture = ExtResource("7_4xg86")
 
+[node name="CharacterCat" type="Sprite2D" parent="BackgroundParallax" unique_id=1780160761]
+position = Vector2(5.932169, -49.611732)
+texture = ExtResource("6_rrgl4")
+
 [node name="Floor" type="Sprite2D" parent="BackgroundParallax" unique_id=462741281]
+position = Vector2(6.3857636, -49.6114)
 texture = ExtResource("4_uqeha")
 
 [node name="MainContainer" type="MarginContainer" parent="." unique_id=46607296]
@@ -138,7 +150,7 @@ alignment = 0
 [node name="CharacterMenu" parent="." unique_id=1706618056 instance=ExtResource("10_qel0l")]
 visible = false
 layout_mode = 1
-character_button_group = SubResource("ButtonGroup_qel0l")
+character_button_group = SubResource("ButtonGroup_rrgl4")
 
 [node name="OptionsMenu" parent="." unique_id=37608241 instance=ExtResource("9_thkx5")]
 visible = false

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterInfo" format=3 uid="uid://bk2pdns5qeng7"]
+
+[ext_resource type="Script" uid="uid://x7wxbs1sjxtc" path="res://common/scripts/character_info.gd" id="1_2osw4"]
+[ext_resource type="SpriteFrames" uid="uid://b7n5dw7ekrssr" path="res://common/resources/cucumber_body_sprite_frames.tres" id="1_u03t0"]
+[ext_resource type="SpriteFrames" uid="uid://cosq4b8ponn5y" path="res://common/resources/cucumber_paddle_sprite_frames.tres" id="2_looef"]
+
+[resource]
+script = ExtResource("1_2osw4")
+name = "character.name.Scucumber"
+locked = true
+body_sprite_frames = ExtResource("1_u03t0")
+paddle_sprite_frames = ExtResource("2_looef")
+metadata/_custom_type_script = "uid://x7wxbs1sjxtc"

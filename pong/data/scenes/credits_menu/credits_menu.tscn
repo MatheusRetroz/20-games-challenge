@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b7sv7qwrmvhex"]
 
 [ext_resource type="Script" uid="uid://d1wytrjbpdwjg" path="res://scenes/credits_menu/credits_menu.gd" id="1_hhhe6"]
-[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options_background.png" id="2_344tv"]
+[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options/options_background.png" id="2_344tv"]
 [ext_resource type="Shortcut" uid="uid://cmkxxa3fjegge" path="res://common/shortcuts/cancel_shortcut.tres" id="3_5ww45"]
 
-[node name="CreditsMenu" type="Control" unique_id=3656688 node_paths=PackedStringArray("back_button")]
+[node name="CreditsMenu" type="Control" unique_id=3656688 node_paths=PackedStringArray("rich_text_label", "back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hhhe6")
+text = "[img=256]res://common/textures/title_screen/title.png[/img]
+
+
+[font_size={title_size}][color=title_color]credits.title.director[/color][/font_size]
+[font_size={name_size}][color=name_color]Matheus Retroz[/color][/font_size]
+
+[font_size={title_size}][color=title_color]credits.title.art[/color][/font_size]
+[font_size={name_size}][color=name_color]Matheus Retroz[/color][/font_size]
+
+[font_size={title_size}][color=title_color]credits.title.programming[/color][/font_size]
+[font_size={name_size}][color=name_color]Matheus Retroz[/color][/font_size]
+
+[font_size={title_size}][color=title_color]credits.title.sound[/color][/font_size]
+[font_size={name_size}][color=name_color]Matheus Retroz[/color][/font_size]
+[font_size={name_size}][color=name_color]freesound_community(pixabay)[/color][/font_size]
+
+[font_size={title_size}][color=title_color]credits.title.music[/color][/font_size]
+[font_size={name_size}][color=name_color]Mixkit (Morning sound in a garden)[/color][/font_size]"
+rich_text_label = NodePath("MarginContainer/RichTextLabel")
 back_button = NodePath("MarginContainer/BackButton")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1583123851]
@@ -32,6 +51,24 @@ theme_override_constants/margin_bottom = 32
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=2100446906]
 layout_mode = 2
+bbcode_enabled = true
+text = "[img=256]res://common/textures/title_screen/title.png[/img]
+
+
+[font_size={36.0}][color=e85260ff]Diretor[/color][/font_size]
+[font_size={16.0}][color=ffffff80]Matheus Retroz[/color][/font_size]
+
+[font_size={36.0}][color=e85260ff]Arte[/color][/font_size]
+[font_size={16.0}][color=ffffff80]Matheus Retroz[/color][/font_size]
+
+[font_size={36.0}][color=e85260ff]Programação[/color][/font_size]
+[font_size={16.0}][color=ffffff80]Matheus Retroz[/color][/font_size]
+
+[font_size={36.0}][color=e85260ff]Som[/color][/font_size]
+[font_size={16.0}][color=ffffff80]Matheus Retroz[/color][/font_size]
+
+[font_size={36.0}][color=e85260ff]Música [/color][/font_size]
+[font_size={16.0}][color=ffffff80]Mixkit (Morning sound in a garden)[/color][/font_size]"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="MarginContainer" unique_id=680627124]
@@ -39,4 +76,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 shortcut = ExtResource("3_5ww45")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 text = "gui.button.back"

@@ -1,6 +1,8 @@
 extends Control
 
-# --- Export ---
+
+# ------------------------ EXPORT ------------------------
+
 @export var main_container: Control = null
 @export_group("Buttons")
 @export var start_button: BaseButton = null
@@ -9,7 +11,7 @@ extends Control
 @export var quit_button: BaseButton = null
 
 
-# ------ Init ------
+# ======================== INIT ========================
 
 func _enter_tree() -> void:
 	match OS.get_name():
@@ -27,8 +29,10 @@ func _ready() -> void:
 	
 	MainCore.set_menu(&"main", main_container)
 	MainCore.go_to_menu(&"main")
+	
+	ScreenManager.set_transition(false)
 
-# ------ Signals ------
+# ======================== SIGNALS ========================
 
 func _on_start_button_pressed() -> void:
 	MainCore.go_to_menu(&"character")

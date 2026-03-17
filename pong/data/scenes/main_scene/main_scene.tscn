@@ -1,10 +1,568 @@
 [gd_scene format=3 uid="uid://dvk0w378iwtvt"]
 
 [ext_resource type="Script" uid="uid://b8mivxuwdadxm" path="res://scenes/main_scene/main_scene.gd" id="1_o5t4i"]
+[ext_resource type="Texture2D" uid="uid://kv4kd5bgi2fo" path="res://common/textures/game_background.png" id="2_o5t4i"]
 [ext_resource type="PackedScene" uid="uid://bymtdpe5fchw7" path="res://scenes/player/player.tscn" id="2_symxd"]
+[ext_resource type="PackedScene" uid="uid://bw6iggr2xat85" path="res://scenes/enemy/enemy.tscn" id="4_6loks"]
+[ext_resource type="PackedScene" uid="uid://db27khuarbhe8" path="res://scenes/ball/ball.tscn" id="6_kbdpr"]
+[ext_resource type="AudioStream" uid="uid://v2v2eld1kjjn" path="res://common/audios/ambient(mixkit).mp3" id="8_6ycpv"]
+[ext_resource type="Shader" uid="uid://hlrp3yqnjdh2" path="res://common/shaders/vignette.gdshader" id="9_nim2u"]
+[ext_resource type="StyleBox" uid="uid://c00s26krafwa3" path="res://common/themes/styles/button_normal_style_box_texture.tres" id="9_ugojt"]
+[ext_resource type="PackedScene" uid="uid://dh1kyvwerx07l" path="res://scenes/options_menu/options_menu.tscn" id="9_umvci"]
+[ext_resource type="StyleBox" uid="uid://cd8lirghisbp" path="res://common/themes/styles/button_pressed_style_box_texture.tres" id="10_f6yoc"]
+[ext_resource type="Texture2D" uid="uid://bqqxet4nn6crg" path="res://common/textures/game_menu_background.png" id="10_sro07"]
+[ext_resource type="Texture2D" uid="uid://d3wucuf85epr2" path="res://common/textures/buttons/label_button.png" id="11_lt3s2"]
+[ext_resource type="StyleBox" uid="uid://0hmkphc40ay" path="res://common/themes/styles/button_hover_style_box_texture.tres" id="11_nim2u"]
+[ext_resource type="Texture2D" uid="uid://d1ooricnhi1j8" path="res://common/textures/point/set_point.png" id="12_b7qf2"]
+[ext_resource type="Shortcut" uid="uid://cmkxxa3fjegge" path="res://common/shortcuts/cancel_shortcut.tres" id="12_f6yoc"]
+[ext_resource type="Texture2D" uid="uid://dhmrtwkae7l7b" path="res://common/textures/point/enemy_point.png" id="18_datfd"]
+[ext_resource type="Texture2D" uid="uid://djmklvku85s0m" path="res://common/textures/point/player_point.png" id="19_qgjuk"]
+[ext_resource type="Texture2D" uid="uid://dejkaa06fi0vh" path="res://common/textures/map_limit_feedback.png" id="21_b7qf2"]
+[ext_resource type="AudioStream" uid="uid://cvpnpvqnaojsy" path="res://common/audios/unlocked.mp3" id="23_7633w"]
+[ext_resource type="AudioStream" uid="uid://cjulpjja10pk5" path="res://common/audios/whistle/long_whistle.mp3" id="24_i0gdb"]
+[ext_resource type="AudioStream" uid="uid://bcdcq8h84t4rm" path="res://common/audios/whistle/small_whistle.mp3" id="25_4dwww"]
 
-[node name="MainScene" type="Node2D" unique_id=251243723]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_symxd"]
+size = Vector2(1400, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5t4i"]
+size = Vector2(20, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbdpr"]
+size = Vector2(40, 760)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7qf2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_17klg"]
+texture = ExtResource("19_qgjuk")
+texture_margin_left = 12.0
+texture_margin_top = 20.0
+texture_margin_right = 12.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7633w"]
+texture = ExtResource("12_b7qf2")
+texture_margin_left = 12.0
+texture_margin_top = 20.152504
+texture_margin_right = 12.0
+texture_margin_bottom = 7.87811
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgjuk"]
+texture = ExtResource("18_datfd")
+texture_margin_left = 12.0
+texture_margin_top = 20.0
+texture_margin_right = 12.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_7633w"]
+outline_size = 8
+outline_color = Color(0.039215688, 0.043137256, 0.043137256, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b7qf2"]
+texture = ExtResource("11_lt3s2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_lt3s2"]
+font_color = Color(0.047058824, 0.05490196, 0.0627451, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lt3s2"]
+texture = ExtResource("11_lt3s2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sro07"]
+shader = ExtResource("9_nim2u")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_alpha = 0.5
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/blur_intensity = 2.0
+
+[node name="MainScene" type="Node2D" unique_id=251243723 node_paths=PackedStringArray("ball", "player", "enemy", "player_spawn", "enemy_spawn", "center_spawn", "player_map_limit", "enemy_map_limit", "point_area", "player_point_label", "player_set_label", "enemy_point_label", "enemy_set_label", "small_whistle_player", "long_whistle_player", "game_label", "unlocked_label", "unlocked_player", "init_container", "point_container", "play_again_button", "main_container", "resume_button", "options_button", "reset_button", "quit_to_menu_button")]
 script = ExtResource("1_o5t4i")
+ball = NodePath("Ball")
+player = NodePath("Player")
+enemy = NodePath("Enemy")
+player_spawn = NodePath("PlayerSpawn")
+enemy_spawn = NodePath("EnemySpawn")
+center_spawn = NodePath("CenterSpawn")
+player_map_limit = NodePath("PlayerMapLimit")
+enemy_map_limit = NodePath("EnemyMapLimit")
+point_area = NodePath("PointArea")
+player_point_label = NodePath("UI/GameContainer/PointContainer/HBoxContainer/PlayerPointLabel")
+player_set_label = NodePath("UI/GameContainer/PointContainer/HBoxContainer/PlayerSetLabel")
+enemy_point_label = NodePath("UI/GameContainer/PointContainer/HBoxContainer/EnemyPointLabel")
+enemy_set_label = NodePath("UI/GameContainer/PointContainer/HBoxContainer/EnemySetLabel")
+small_whistle_player = NodePath("SmallWhistlePlayer")
+long_whistle_player = NodePath("LongWhistlePlayer")
+game_label = NodePath("UI/GameContainer/Label")
+unlocked_label = NodePath("UI/GameContainer/UnlockedLabel")
+unlocked_player = NodePath("UnlockedPlayer")
+init_container = NodePath("UI/GameContainer/InitContainer")
+point_container = NodePath("UI/GameContainer/PointContainer")
+play_again_button = NodePath("UI/GameContainer/PlayAgainButton")
+main_container = NodePath("UI/MainContainer")
+resume_button = NodePath("UI/MainContainer/MarginContainer/ButtonsContainer/ResumeButton")
+options_button = NodePath("UI/MainContainer/MarginContainer/ButtonsContainer/OptionsButton")
+reset_button = NodePath("UI/MainContainer/MarginContainer/ButtonsContainer/ResetButton")
+quit_to_menu_button = NodePath("UI/MainContainer/MarginContainer/ButtonsContainer/QuitToMenuButton")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=977103850]
+z_index = -2
+position = Vector2(640, 360)
+texture = ExtResource("2_o5t4i")
+
+[node name="PlayerMapLimit" type="Sprite2D" parent="." unique_id=459820323]
+position = Vector2(285, 360)
+texture = ExtResource("21_b7qf2")
+
+[node name="EnemyMapLimit" type="Sprite2D" parent="." unique_id=183505511]
+position = Vector2(996, 360)
+texture = ExtResource("21_b7qf2")
+flip_h = true
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=343816934]
+position = Vector2(640, 360)
+
+[node name="CollisionTop" type="CollisionShape2D" parent="Walls" unique_id=195985169]
+position = Vector2(0, -370)
+shape = SubResource("RectangleShape2D_symxd")
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="Walls" unique_id=271049905]
+position = Vector2(0, 370)
+shape = SubResource("RectangleShape2D_symxd")
+
+[node name="Sides" type="StaticBody2D" parent="." unique_id=1400064270]
+position = Vector2(640, 360)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="Sides" unique_id=2139007497]
+position = Vector2(-640, 0)
+shape = SubResource("RectangleShape2D_o5t4i")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="Sides" unique_id=1916532599]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_o5t4i")
+disabled = true
+
+[node name="CollisionCenter" type="CollisionShape2D" parent="Sides" unique_id=478516910]
+position = Vector2(-312, 0)
+shape = SubResource("RectangleShape2D_o5t4i")
+
+[node name="PointArea" type="Area2D" parent="." unique_id=1993643322]
+position = Vector2(640, 360)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="PointArea" unique_id=377243964]
+position = Vector2(-720, 0)
+shape = SubResource("RectangleShape2D_kbdpr")
+debug_color = Color(0.7, 0.30333334, 0, 0.41960785)
+
+[node name="CollisionRight" type="CollisionShape2D" parent="PointArea" unique_id=689345281]
+position = Vector2(720, 0)
+shape = SubResource("RectangleShape2D_kbdpr")
+debug_color = Color(0.7, 0.30333334, 0, 0.41960785)
+
+[node name="Ball" parent="." unique_id=1611699413 instance=ExtResource("6_kbdpr")]
+position = Vector2(640, 360)
 
 [node name="Player" parent="." unique_id=10329815 instance=ExtResource("2_symxd")]
-position = Vector2(96, 273)
+position = Vector2(96, 360)
+
+[node name="Enemy" parent="." unique_id=210588933 node_paths=PackedStringArray("ball") instance=ExtResource("4_6loks")]
+position = Vector2(1568, 360)
+ball = NodePath("../Ball")
+
+[node name="EnemySpawn" type="Marker2D" parent="." unique_id=1222825288]
+position = Vector2(1112, 360)
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1786216198]
+position = Vector2(168, 360)
+
+[node name="CenterSpawn" type="Marker2D" parent="." unique_id=140355795]
+position = Vector2(640, 360)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=80396838]
+process_mode = 3
+follow_viewport_enabled = true
+
+[node name="GameContainer" type="Control" parent="UI" unique_id=298845299]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -16.0
+offset_right = 1264.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="PlayAgainButton" type="Button" parent="UI/GameContainer" unique_id=1685749241]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 640.0
+offset_right = 1282.0
+offset_bottom = 704.0
+theme_override_colors/font_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
+theme_override_styles/normal = ExtResource("9_ugojt")
+theme_override_styles/pressed = ExtResource("10_f6yoc")
+theme_override_styles/hover = ExtResource("11_nim2u")
+text = "gui.button.play_again"
+
+[node name="PointContainer" type="PanelContainer" parent="UI/GameContainer" unique_id=2100265801]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 132.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_b7qf2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/GameContainer/PointContainer" unique_id=1612388970]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="PlayerPointLabel" type="Label" parent="UI/GameContainer/PointContainer/HBoxContainer" unique_id=1761139287]
+custom_minimum_size = Vector2(64, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29803923, 0.30980393, 0.34117648, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_17klg")
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerSetLabel" type="Label" parent="UI/GameContainer/PointContainer/HBoxContainer" unique_id=1654333343]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.29803923, 0.30980393, 0.34117648, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_7633w")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemySetLabel" type="Label" parent="UI/GameContainer/PointContainer/HBoxContainer" unique_id=2116706329]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.29803923, 0.30980393, 0.34117648, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_7633w")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyPointLabel" type="Label" parent="UI/GameContainer/PointContainer/HBoxContainer" unique_id=132052175]
+custom_minimum_size = Vector2(64, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29803923, 0.30980393, 0.34117648, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_qgjuk")
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="UI/GameContainer" unique_id=1916984900]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -9.5
+offset_right = 20.0
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "game.label.set_finished"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="InitContainer" type="MarginContainer" parent="UI/GameContainer" unique_id=1063102072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="UI/GameContainer/InitContainer" unique_id=1939270097]
+modulate = Color(1, 1, 1, 0.25)
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "game.tooltip.points"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CommandsContainer" type="HBoxContainer" parent="UI/GameContainer/InitContainer" unique_id=1343864145]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+
+[node name="MovementContainer" type="HBoxContainer" parent="UI/GameContainer/InitContainer/CommandsContainer" unique_id=1625389583]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer" unique_id=856488129]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 8
+text = "game.action.movement"
+label_settings = SubResource("LabelSettings_7633w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovementContainer" type="HBoxContainer" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer" unique_id=1857381326]
+layout_mode = 2
+
+[node name="LeftLabel" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer/MovementContainer" unique_id=926328690]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_b7qf2")
+text = "A"
+label_settings = SubResource("LabelSettings_lt3s2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MidContainer" type="VBoxContainer" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer/MovementContainer" unique_id=1409885179]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ForwardLabel" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer/MovementContainer/MidContainer" unique_id=1521747836]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_b7qf2")
+text = "W"
+label_settings = SubResource("LabelSettings_lt3s2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackwardLabel" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer/MovementContainer/MidContainer" unique_id=825997125]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_b7qf2")
+text = "s"
+label_settings = SubResource("LabelSettings_lt3s2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightLabel" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/MovementContainer/MovementContainer" unique_id=125547394]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_b7qf2")
+text = "D"
+label_settings = SubResource("LabelSettings_lt3s2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShiftContainer" type="HBoxContainer" parent="UI/GameContainer/InitContainer/CommandsContainer" unique_id=1001845238]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/ShiftContainer" unique_id=465241804]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "game.action.run"
+label_settings = SubResource("LabelSettings_7633w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShiftLabel" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/ShiftContainer" unique_id=1610442982]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_b7qf2")
+text = "SHIFT"
+label_settings = SubResource("LabelSettings_lt3s2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AttackContainer" type="HBoxContainer" parent="UI/GameContainer/InitContainer/CommandsContainer" unique_id=1535116716]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/AttackContainer" unique_id=1783159545]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 8
+text = "game.action.attack"
+label_settings = SubResource("LabelSettings_7633w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseLabel" type="Label" parent="UI/GameContainer/InitContainer/CommandsContainer/AttackContainer" unique_id=1855638273]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_b7qf2")
+text = "game.action.mouse_left"
+label_settings = SubResource("LabelSettings_lt3s2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockedLabel" type="Label" parent="UI/GameContainer" unique_id=362785876]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 0
+offset_left = -160.0
+offset_top = 24.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(0.039215688, 0.039215688, 0.039215688, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_lt3s2")
+text = "game.label.unlocked_character"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MainContainer" type="Control" parent="UI" unique_id=637352649]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="UI/MainContainer" unique_id=1633841528]
+material = SubResource("ShaderMaterial_sro07")
+layout_mode = 1
+offset_left = 242.0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Label" type="Label" parent="UI/MainContainer/Background" unique_id=520979636]
+modulate = Color(1, 1, 1, 0.25)
+custom_minimum_size = Vector2(160, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_bottom = 64.0
+grow_horizontal = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "game.tooltip.points"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="BackgroundButtons" type="TextureRect" parent="UI/MainContainer" unique_id=1282548947]
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("10_sro07")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MainContainer" unique_id=1543020076]
+layout_mode = 1
+offset_right = 243.0
+offset_bottom = 720.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="UI/MainContainer/MarginContainer" unique_id=925196646]
+layout_mode = 2
+
+[node name="Separator_00" type="Control" parent="UI/MainContainer/MarginContainer/ButtonsContainer" unique_id=187004320]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ResumeButton" type="Button" parent="UI/MainContainer/MarginContainer/ButtonsContainer" unique_id=2089444667]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = ExtResource("9_ugojt")
+theme_override_styles/pressed = ExtResource("10_f6yoc")
+theme_override_styles/hover = ExtResource("11_nim2u")
+shortcut = ExtResource("12_f6yoc")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "menu.button.resume"
+
+[node name="OptionsButton" type="Button" parent="UI/MainContainer/MarginContainer/ButtonsContainer" unique_id=1752148602]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = ExtResource("9_ugojt")
+theme_override_styles/pressed = ExtResource("10_f6yoc")
+theme_override_styles/hover = ExtResource("11_nim2u")
+text = "menu.button.options"
+
+[node name="Separator_01" type="Control" parent="UI/MainContainer/MarginContainer/ButtonsContainer" unique_id=812738500]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="ResetButton" type="Button" parent="UI/MainContainer/MarginContainer/ButtonsContainer" unique_id=82095455]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = ExtResource("9_ugojt")
+theme_override_styles/pressed = ExtResource("10_f6yoc")
+theme_override_styles/hover = ExtResource("11_nim2u")
+text = "menu.button.reset"
+
+[node name="QuitToMenuButton" type="Button" parent="UI/MainContainer/MarginContainer/ButtonsContainer" unique_id=1308976554]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = ExtResource("9_ugojt")
+theme_override_styles/pressed = ExtResource("10_f6yoc")
+theme_override_styles/hover = ExtResource("11_nim2u")
+text = "menu.button.quit_to_menu"
+
+[node name="OptionsMenu" parent="UI" unique_id=37608241 instance=ExtResource("9_umvci")]
+visible = false
+
+[node name="AmbientStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=994679022]
+stream = ExtResource("8_6ycpv")
+volume_db = -40.0
+autoplay = true
+bus = &"Music"
+
+[node name="UnlockedPlayer" type="AudioStreamPlayer" parent="." unique_id=1262885962]
+stream = ExtResource("23_7633w")
+
+[node name="LongWhistlePlayer" type="AudioStreamPlayer" parent="." unique_id=670484367]
+stream = ExtResource("24_i0gdb")
+volume_db = -10.0
+bus = &"Sfx"
+
+[node name="SmallWhistlePlayer" type="AudioStreamPlayer" parent="." unique_id=1136745342]
+stream = ExtResource("25_4dwww")
+volume_db = -10.0
+pitch_scale = 1.05
+bus = &"Sfx"

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://dvk0w378iwtvt"]
+
+[ext_resource type="Script" uid="uid://b8mivxuwdadxm" path="res://scenes/main_scene/main_scene.gd" id="1_o5t4i"]
+[ext_resource type="Texture2D" uid="uid://kv4kd5bgi2fo" path="res://common/textures/game_background.png" id="2_o5t4i"]
+[ext_resource type="PackedScene" uid="uid://bymtdpe5fchw7" path="res://scenes/player/player.tscn" id="2_symxd"]
+[ext_resource type="Texture2D" uid="uid://cta88mxhwtwi4" path="res://common/textures/buttons/init/button_init_normal.png" id="4_2cqfw"]
+[ext_resource type="Texture2D" uid="uid://dgv1k8np3pxwn" path="res://common/textures/buttons/init/button_init_hover.png" id="5_kbdpr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_symxd"]
+size = Vector2(1280, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5t4i"]
+size = Vector2(20, 720)
+
+[node name="MainScene" type="Node2D" unique_id=251243723]
+script = ExtResource("1_o5t4i")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=977103850]
+position = Vector2(640, 360)
+texture = ExtResource("2_o5t4i")
+
+[node name="Player" parent="." unique_id=10329815 instance=ExtResource("2_symxd")]
+position = Vector2(96, 273)
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=343816934]
+position = Vector2(640, 360)
+
+[node name="CollisionTop" type="CollisionShape2D" parent="Walls" unique_id=195985169]
+position = Vector2(0, -360)
+shape = SubResource("RectangleShape2D_symxd")
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="Walls" unique_id=271049905]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_symxd")
+
+[node name="Sides" type="StaticBody2D" parent="." unique_id=1400064270]
+position = Vector2(640, 360)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="Sides" unique_id=2139007497]
+position = Vector2(-640, 0)
+shape = SubResource("RectangleShape2D_o5t4i")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="Sides" unique_id=1916532599]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_o5t4i")
+
+[node name="Buttons" type="Node2D" parent="." unique_id=1002690149]
+position = Vector2(131, 608)
+
+[node name="LeftButton" type="TouchScreenButton" parent="Buttons" unique_id=116044807]
+position = Vector2(-72, -24)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_2cqfw")
+texture_pressed = ExtResource("5_kbdpr")
+action = "move_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="Buttons" unique_id=898786132]
+position = Vector2(24, -24)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_2cqfw")
+texture_pressed = ExtResource("5_kbdpr")
+action = "move_right"
+
+[node name="ForwardButton" type="TouchScreenButton" parent="Buttons" unique_id=1986699433]
+position = Vector2(-24, -72)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_2cqfw")
+texture_pressed = ExtResource("5_kbdpr")
+action = "move_forward"
+
+[node name="BackwardButton" type="TouchScreenButton" parent="Buttons" unique_id=1388838548]
+position = Vector2(-24, 24)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_2cqfw")
+texture_pressed = ExtResource("5_kbdpr")
+action = "move_backward"

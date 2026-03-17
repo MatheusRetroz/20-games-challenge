@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dh1kyvwerx07l"]
 
 [ext_resource type="Script" uid="uid://c7qtt4txpcqvc" path="res://scenes/options_menu/options_menu.gd" id="1_sglii"]
-[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options_background.png" id="2_01rrm"]
+[ext_resource type="Texture2D" uid="uid://bq3nhgkyiyeuy" path="res://common/textures/options/options_background.png" id="2_01rrm"]
 [ext_resource type="Script" uid="uid://dvq2lwwromwis" path="res://common/scripts/spin_button.gd" id="2_44mp6"]
-[ext_resource type="Texture2D" uid="uid://cpbnl22hfhsxs" path="res://common/textures/panel_background_round.png" id="3_k6vuu"]
+[ext_resource type="Texture2D" uid="uid://cpbnl22hfhsxs" path="res://common/textures/options/panel_background_round.png" id="3_k6vuu"]
 [ext_resource type="Texture2D" uid="uid://c4b481aaoc2k5" path="res://common/textures/buttons/spin/button_less_normal.png" id="3_rwie7"]
 [ext_resource type="Texture2D" uid="uid://crbms0nc7st1b" path="res://common/textures/buttons/spin/button_less_pressed.png" id="4_gairj"]
-[ext_resource type="Texture2D" uid="uid://c563wwn40u0q0" path="res://common/textures/panel_background.png" id="4_nlbbo"]
+[ext_resource type="Texture2D" uid="uid://c563wwn40u0q0" path="res://common/textures/options/panel_background.png" id="4_nlbbo"]
 [ext_resource type="Texture2D" uid="uid://ifgrj8fkrf5s" path="res://common/textures/buttons/spin/button_less_hover.png" id="5_g2qy4"]
 [ext_resource type="Texture2D" uid="uid://ba5yerxdww4ku" path="res://common/textures/buttons/spin/button_less_disabled.png" id="6_g2qy4"]
 [ext_resource type="Texture2D" uid="uid://bt0mo3rkk76jy" path="res://common/textures/buttons/spin/button_more_normal.png" id="6_hvpkh"]
@@ -34,7 +34,7 @@ texture_margin_top = 16.0
 texture_margin_right = 16.0
 texture_margin_bottom = 16.0
 
-[node name="OptionsMenu" type="Control" unique_id=37608241 node_paths=PackedStringArray("language_button", "window_mode_spin", "sound_main_slider", "sound_music_slider", "sound_sfx_slider", "back_button")]
+[node name="OptionsMenu" type="Control" unique_id=37608241 node_paths=PackedStringArray("language_button", "window_mode_spin", "back_button", "sound_main_slider", "sound_music_slider", "sound_sfx_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,10 +44,10 @@ grow_vertical = 2
 script = ExtResource("1_sglii")
 language_button = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/LanguageContainer/HBoxContainer/SpinButton")
 window_mode_spin = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/WindowModeContainer/HBoxContainer/SpinButton")
+back_button = NodePath("MarginContainer/MainContainer/BackButton")
 sound_main_slider = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MainContainer/HBoxContainer/HSlider")
 sound_music_slider = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/MusicContainer/HBoxContainer/HSlider")
 sound_sfx_slider = NodePath("MarginContainer/MainContainer/SettingsContainer/VBoxContainer/SfxContainer/HBoxContainer/HSlider")
-back_button = NodePath("MarginContainer/MainContainer/BackButton")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1690537787]
 layout_mode = 0
@@ -292,4 +292,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 shortcut = ExtResource("14_mwknw")
+shortcut_feedback = false
+shortcut_in_tooltip = false
 text = "gui.button.back"

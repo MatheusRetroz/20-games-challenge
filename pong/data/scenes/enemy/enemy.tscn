@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://bw6iggr2xat85"]
+
+[ext_resource type="Script" uid="uid://4eoitpbgt7au" path="res://scenes/enemy/enemy.gd" id="1_4a83h"]
+[ext_resource type="Shader" uid="uid://dfiw6dn3eoqd0" path="res://common/shaders/hit.gdshader" id="1_40wdo"]
+[ext_resource type="Texture2D" uid="uid://cafirnr28624b" path="res://common/textures/characters/shadow.png" id="2_a3pup"]
+[ext_resource type="Resource" uid="uid://bk2pdns5qeng7" path="res://common/resources/cucumber_resource.tres" id="3_2m548"]
+[ext_resource type="SpriteFrames" uid="uid://b7n5dw7ekrssr" path="res://common/resources/cucumber_body_sprite_frames.tres" id="4_so3kp"]
+[ext_resource type="SpriteFrames" uid="uid://cosq4b8ponn5y" path="res://common/resources/cucumber_paddle_sprite_frames.tres" id="28_c3nfx"]
+[ext_resource type="Script" uid="uid://drhy4r1gujy8i" path="res://common/scripts/state_machine/state_machine.gd" id="52_2igkk"]
+[ext_resource type="Script" uid="uid://juej8ar5rnqx" path="res://scenes/enemy/src/idle_state.gd" id="53_2fhfl"]
+[ext_resource type="Script" uid="uid://de7rln2uq6u6u" path="res://scenes/enemy/src/walk_state.gd" id="54_35j6c"]
+[ext_resource type="Script" uid="uid://4tv0wew1v65l" path="res://common/scripts/state_machine/states/none_state.gd" id="54_r4roh"]
+[ext_resource type="Script" uid="uid://bgkofcqcquywd" path="res://scenes/enemy/src/init_state.gd" id="54_sv5lt"]
+[ext_resource type="AudioStream" uid="uid://bo3lr4t1jguyt" path="res://common/audios/footstep.mp3" id="55_35j6c"]
+[ext_resource type="AudioStream" uid="uid://dlckxu4vnh1r1" path="res://common/audios/attack.mp3" id="57_stglq"]
+[ext_resource type="AudioStream" uid="uid://d21v3yx4dwjkk" path="res://common/audios/hit.mp3" id="58_b7i8l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjssy"]
+shader = ExtResource("1_40wdo")
+shader_parameter/enable = false
+shader_parameter/color = Color(0.871, 0.823, 0.896, 1)
+shader_parameter/shake_speed = 0.1
+shader_parameter/shake_intensity = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_so3kp"]
+radius = 70.0
+height = 140.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3pup"]
+size = Vector2(60, 140)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=210588933 node_paths=PackedStringArray("state_machine", "flip_container", "paddle_animated_sprite", "body_animated_sprite", "footstep_player", "attack_player", "hit_player", "paddle_area")]
+material = SubResource("ShaderMaterial_tjssy")
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_4a83h")
+character_info = ExtResource("3_2m548")
+state_machine = NodePath("StateMachine")
+flip_container = NodePath("FlipContainer")
+paddle_animated_sprite = NodePath("FlipContainer/PaddleAnimation")
+body_animated_sprite = NodePath("FlipContainer/BodyAnimation")
+footstep_player = NodePath("FootstepPlayer")
+attack_player = NodePath("AttackPlayer")
+hit_player = NodePath("HitPlayer")
+paddle_area = NodePath("FlipContainer/Paddle")
+
+[node name="FlipContainer" type="Node2D" parent="." unique_id=17319100]
+use_parent_material = true
+position = Vector2(0, -6)
+
+[node name="BodyAnimation" type="AnimatedSprite2D" parent="FlipContainer" unique_id=601905665]
+use_parent_material = true
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("4_so3kp")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="PaddleAnimation" type="AnimatedSprite2D" parent="FlipContainer" unique_id=1353450038]
+use_parent_material = true
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("28_c3nfx")
+animation = &"walk_dead"
+autoplay = "idle"
+
+[node name="Shadow" type="Sprite2D" parent="FlipContainer" unique_id=1240771111]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_a3pup")
+
+[node name="Paddle" type="Area2D" parent="FlipContainer" unique_id=927195810]
+collision_layer = 0
+collision_mask = 8
+
+[node name="Collision" type="CollisionShape2D" parent="FlipContainer/Paddle" unique_id=1019673951]
+position = Vector2(32, 6)
+scale = Vector2(0.6, 1)
+shape = SubResource("CapsuleShape2D_so3kp")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1887947661]
+shape = SubResource("RectangleShape2D_a3pup")
+
+[node name="RandomPosTimer" type="Timer" parent="." unique_id=490126473]
+wait_time = 2.0
+autostart = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=1182239054 node_paths=PackedStringArray("parent", "states")]
+script = ExtResource("52_2igkk")
+parent = NodePath("..")
+states = [NodePath("None"), NodePath("Init"), NodePath("Idle"), NodePath("Walk")]
+metadata/_custom_type_script = "uid://drhy4r1gujy8i"
+
+[node name="None" type="Node" parent="StateMachine" unique_id=820580261]
+script = ExtResource("54_r4roh")
+
+[node name="Init" type="Node" parent="StateMachine" unique_id=1904197760]
+script = ExtResource("54_sv5lt")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1392097081]
+script = ExtResource("53_2fhfl")
+metadata/_custom_type_script = "uid://dd4o160r3avdv"
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=151907188]
+script = ExtResource("54_35j6c")
+metadata/_custom_type_script = "uid://dd4o160r3avdv"
+
+[node name="FootstepPlayer" type="AudioStreamPlayer" parent="." unique_id=413757650]
+stream = ExtResource("55_35j6c")
+volume_db = -10.0
+pitch_scale = 1.25
+bus = &"Sfx"
+
+[node name="AttackPlayer" type="AudioStreamPlayer" parent="." unique_id=1452974782]
+stream = ExtResource("57_stglq")
+volume_db = -5.0
+bus = &"Sfx"
+
+[node name="HitPlayer" type="AudioStreamPlayer" parent="." unique_id=1667041551]
+stream = ExtResource("58_b7i8l")
+bus = &"Sfx"

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://vywjwow0ybjh"]
+
+[ext_resource type="Shader" uid="uid://dbltfn36qv516" path="res://common/shaders/transition.gdshader" id="1_mu3lv"]
+
+[resource]
+shader = ExtResource("1_mu3lv")
+shader_parameter/value = 1.0
+shader_parameter/lod = 3.0000000447036
+shader_parameter/color = Color(0.1, 0.1, 0.1, 1)

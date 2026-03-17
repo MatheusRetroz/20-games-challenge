@@ -3,6 +3,9 @@ menu.button.start,Start,Iniciar
 menu.button.options,Options,Configurações
 menu.button.credits,Credits,Créditos
 menu.button.quit,Quit,Sair
+menu.button.resume,Resume,Voltar
+menu.button.quit_to_menu,Quit To Menu,Voltar ao menu
+menu.button.reset,Reset,Reiniciar
 ,,
 menu.title.options,Options,Configurações
 ,,
@@ -21,3 +24,26 @@ options.window_mode.fullscreen,Fullscreen,Tela Cheia
 ,,
 gui.button.back,Back,Voltar
 gui.button.play,Play,Jogar
+gui.button.play_again,Play Again,Jogar Novamente
+,,
+character.name.cat,Cat,Gato
+character.name.cucumber,Cucumber,Pepino 
+,,
+credits.title.director,Director,Diretor
+credits.title.art,Art,Arte
+credits.title.programming,Programming,Programação
+credits.title.sound,Sound,Som
+credits.title.music,Music,Música 
+,,
+game.action.mouse_left,Mouse Left,Mouse Esquerdo
+game.action.movement,Movement,Movimento 
+game.action.run,Run,Correr
+game.action.attack,Attack,Atacar
+game.label.set_finished,Won the set,Set finalizado
+game.label.player_win,Winning,Vitória
+game.label.enemy_win,Defeat,Derrota
+,,
+game.label.unlocked_character,Unlocked Character,Personagem Desbloqueado
+game.tooltip.points,"3 points = 1 set
+3 sets = winning","3 pontos = 1 set
+3 sets = vitória"
