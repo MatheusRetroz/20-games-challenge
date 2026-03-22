@@ -18,13 +18,14 @@ func _ready() -> void:
 
 func enter() -> void:
 	predict_type = [0, 1].pick_random()
-	sprite_scale = 1.0
+	sprite_scale = [1.0, parent.character_info.run_factor].pick_random()
 	target_offset = Vector2(
 			randf_range(-target_offset_range, target_offset_range), 
 			randf_range(-target_offset_range, target_offset_range)
 	)
 	target_pos = parent.get_random_pos()
 	parent.footstep_player.play()
+	
 
 # ======================== PROCESS ========================
 
@@ -32,7 +33,6 @@ func handle_physics_process(delta: float) -> void:
 	var step: int = 300 
 	if parent.is_ball_after_middle(): 
 		step = 60
-		sprite_scale = parent.character_info.run_factor
 	if parent.is_ball_after_middle() or parent.is_ball_coming():
 		target_pos = parent.get_predict(delta, step, predict_type, target_offset)
 	

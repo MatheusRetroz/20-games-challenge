@@ -29,7 +29,9 @@ extends Node2D
 @export var unlocked_player: AudioStreamPlayer = null
 @export var init_container: Control = null
 @export var point_container: Control = null
+@export var game_button_container: Control = null
 @export var play_again_button: BaseButton = null
+@export var quit_to_menu_game_button: BaseButton = null
 
 @export_group("Menu")
 @export var main_container: Control = null
@@ -85,6 +87,7 @@ func _ready() -> void:
 	quit_to_menu_button.pressed.connect(_on_quit_to_menu_button_pressed)
 	
 	play_again_button.pressed.connect(_on_play_again_button_pressed)
+	quit_to_menu_game_button.pressed.connect(_on_quit_to_menu_button_pressed)
 	
 	MainCore.set_menu(&"main", main_container)
 	MainCore.go_to_menu(&"main")
@@ -92,7 +95,7 @@ func _ready() -> void:
 	ScreenManager.set_transition(false)
 	
 	# Init
-	play_again_button.visible = false
+	game_button_container.visible = false
 	
 	game_label.visible = false
 	game_label.modulate.a = 0.0
@@ -197,21 +200,24 @@ func _update_set(winner: String) -> void:
 	
 	match winner:
 		"player":
-			player_point = 0
 			player_sets += 1
 			if player_sets >= SETS_TO_WIN_GAME:
+				player_point = 0
 				_end_game("player")
 			else:
 				update_set = true
 		"enemy":
-			enemy_point = 0
 			enemy_sets += 1
 			if enemy_sets >= SETS_TO_WIN_GAME:
+				enemy_point = 0
 				_end_game("enemy")
 			else:
 				update_set = true
 	
 	if update_set:
+		player_point = 0
+		enemy_point = 0
+		
 		small_whistle_player.play()
 		ball.reset(center_spawn.global_position)
 		await _update_game_label("game.label.set_finished")
@@ -225,7 +231,7 @@ func _end_game(winner: String) -> void:
 	ball.visible = false
 	
 	long_whistle_player.play()
-	play_again_button.visible = true
+	game_button_container.visible = true
 	
 	var text: String = ""
 	match winner:

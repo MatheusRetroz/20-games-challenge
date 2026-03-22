@@ -93,7 +93,7 @@ shader_parameter/vignette_alpha = 0.5
 shader_parameter/vignette_color = Color(0, 0, 0, 1)
 shader_parameter/blur_intensity = 2.0
 
-[node name="MainScene" type="Node2D" unique_id=251243723 node_paths=PackedStringArray("ball", "player", "enemy", "player_spawn", "enemy_spawn", "center_spawn", "player_map_limit", "enemy_map_limit", "point_area", "player_point_label", "player_set_label", "enemy_point_label", "enemy_set_label", "small_whistle_player", "long_whistle_player", "game_label", "unlocked_label", "unlocked_player", "init_container", "point_container", "play_again_button", "main_container", "resume_button", "options_button", "reset_button", "quit_to_menu_button")]
+[node name="MainScene" type="Node2D" unique_id=251243723 node_paths=PackedStringArray("ball", "player", "enemy", "player_spawn", "enemy_spawn", "center_spawn", "player_map_limit", "enemy_map_limit", "point_area", "player_point_label", "player_set_label", "enemy_point_label", "enemy_set_label", "small_whistle_player", "long_whistle_player", "game_label", "unlocked_label", "unlocked_player", "init_container", "point_container", "game_button_container", "play_again_button", "quit_to_menu_game_button", "main_container", "resume_button", "options_button", "reset_button", "quit_to_menu_button")]
 script = ExtResource("1_o5t4i")
 ball = NodePath("Ball")
 player = NodePath("Player")
@@ -115,7 +115,9 @@ unlocked_label = NodePath("UI/GameContainer/UnlockedLabel")
 unlocked_player = NodePath("UnlockedPlayer")
 init_container = NodePath("UI/GameContainer/InitContainer")
 point_container = NodePath("UI/GameContainer/PointContainer")
-play_again_button = NodePath("UI/GameContainer/PlayAgainButton")
+game_button_container = NodePath("UI/GameContainer/GameButtonContainer")
+play_again_button = NodePath("UI/GameContainer/GameButtonContainer/PlayAgainButton")
+quit_to_menu_game_button = NodePath("UI/GameContainer/GameButtonContainer/QuitToMenuButton")
 main_container = NodePath("UI/MainContainer")
 resume_button = NodePath("UI/MainContainer/MarginContainer/ButtonsContainer/ResumeButton")
 options_button = NodePath("UI/MainContainer/MarginContainer/ButtonsContainer/OptionsButton")
@@ -211,12 +213,32 @@ offset_right = 1264.0
 offset_bottom = 720.0
 mouse_filter = 2
 
-[node name="PlayAgainButton" type="Button" parent="UI/GameContainer" unique_id=1685749241]
-layout_mode = 0
-offset_left = 1112.0
-offset_top = 640.0
-offset_right = 1282.0
-offset_bottom = 704.0
+[node name="GameButtonContainer" type="HBoxContainer" parent="UI/GameContainer" unique_id=695650346]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -416.0
+offset_top = -55.0
+offset_right = 5.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="QuitToMenuButton" type="Button" parent="UI/GameContainer/GameButtonContainer" unique_id=1889257006]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.043137256, 0.043137256, 0.043137256, 1)
+theme_override_styles/normal = ExtResource("9_ugojt")
+theme_override_styles/pressed = ExtResource("10_f6yoc")
+theme_override_styles/hover = ExtResource("11_nim2u")
+text = "menu.button.quit_to_menu"
+
+[node name="PlayAgainButton" type="Button" parent="UI/GameContainer/GameButtonContainer" unique_id=1685749241]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.047058824, 0.047058824, 0.047058824, 1)
 theme_override_styles/normal = ExtResource("9_ugojt")
 theme_override_styles/pressed = ExtResource("10_f6yoc")
