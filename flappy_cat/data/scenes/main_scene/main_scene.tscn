@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ygyoqv8vu1mu"]
+
+[ext_resource type="Script" uid="uid://bvbwfcg4q0hvs" path="res://scenes/main_scene/main_scene.gd" id="1_6iw8k"]
+[ext_resource type="PackedScene" uid="uid://cw2usuqh667l3" path="res://scenes/player/player.tscn" id="2_symxd"]
+
+[node name="MainScene" type="Node2D" unique_id=1687410909 node_paths=PackedStringArray("player", "obstacles_container")]
+script = ExtResource("1_6iw8k")
+player = NodePath("Player")
+obstacles_container = NodePath("ObstaclesContainer")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=397038911]
+anchor_mode = 0
+
+[node name="ObstaclesContainer" type="Node2D" parent="." unique_id=1391900383]
+
+[node name="Player" parent="." unique_id=2089189631 instance=ExtResource("2_symxd")]
