@@ -14,7 +14,12 @@ config/name="FlappyCat"
 config/tags=PackedStringArray("estudo", "jogo")
 run/main_scene="uid://ygyoqv8vu1mu"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+run/max_fps=60
+config/icon="uid://c6yej120cabi5"
+
+[audio]
+
+buses/default_bus_layout="uid://c8mu5f5v4jk0a"
 
 [autoload]
 
@@ -32,6 +37,8 @@ window/size/window_width_override=540
 window/size/window_height_override=960
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+window/handheld/orientation=6
+window/vsync/vsync_mode=0
 
 [file_customization]
 
@@ -40,6 +47,11 @@ folder_colors={
 "res://core/": "blue",
 "res://scenes/": "yellow"
 }
+
+[gui]
+
+theme/custom="uid://1xjw3tkv8j58"
+theme/custom_font="uid://bm71g0gunh30o"
 
 [input]
 
@@ -65,3 +77,4 @@ jump={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

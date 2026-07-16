@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bm71g0gunh30o"]
+
+[ext_resource type="FontFile" uid="uid://dvnw2obl8o3gq" path="res://common/fonts/changa_one/ChangaOne-Regular.ttf" id="1_oso5x"]
+
+[resource]
+base_font = ExtResource("1_oso5x")

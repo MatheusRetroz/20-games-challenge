@@ -1,6 +1,0 @@
-res://scenes/main_scene/main_scene.gd
-res://common/scripts/obstacles.gd
-res://scenes/player/player.gd
-res://scenes/player/player.tscn
-res://scenes/main_scene/main_scene.tscn
-res://core/main_core.gd

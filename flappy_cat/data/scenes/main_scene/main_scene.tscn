@@ -1,16 +1,495 @@
 [gd_scene format=3 uid="uid://ygyoqv8vu1mu"]
 
 [ext_resource type="Script" uid="uid://bvbwfcg4q0hvs" path="res://scenes/main_scene/main_scene.gd" id="1_6iw8k"]
+[ext_resource type="Script" uid="uid://csic8xvvnpgo1" path="res://scenes/main_scene/src/ui.gd" id="2_3t4qf"]
 [ext_resource type="PackedScene" uid="uid://cw2usuqh667l3" path="res://scenes/player/player.tscn" id="2_symxd"]
+[ext_resource type="Script" uid="uid://kh6dmxb55v2d" path="res://common/scripts/score_label.gd" id="3_3t4qf"]
+[ext_resource type="Texture2D" uid="uid://61xmuaxyqnms" path="res://common/textures/icons/title.png" id="3_nim2u"]
+[ext_resource type="Script" uid="uid://cfp8keobxrflo" path="res://common/scripts/auto_parallax.gd" id="3_s5p1y"]
+[ext_resource type="Texture2D" uid="uid://kfpks6yl0gty" path="res://common/textures/floor_00.png" id="4_2cqfw"]
+[ext_resource type="Texture2D" uid="uid://dshjm74gg4ccc" path="res://common/textures/background.png" id="4_6loks"]
+[ext_resource type="Texture2D" uid="uid://6gufwgsr48xt" path="res://common/textures/buttons/pause.png" id="4_ugojt"]
+[ext_resource type="Texture2D" uid="uid://bibktmol4vo1o" path="res://common/textures/mountain.png" id="5_6ycpv"]
+[ext_resource type="Texture2D" uid="uid://dc7pet3unpsrl" path="res://common/textures/buttons/pause_hover.png" id="5_f6yoc"]
+[ext_resource type="Texture2D" uid="uid://dp5ykqaccl152" path="res://common/textures/floor_01.png" id="5_kbdpr"]
+[ext_resource type="Texture2D" uid="uid://ccyysnped3hrj" path="res://common/textures/clouds_00.png" id="9_f6yoc"]
+[ext_resource type="Texture2D" uid="uid://co32x3h5dyfr6" path="res://common/textures/clouds_01.png" id="10_nim2u"]
+[ext_resource type="AudioStream" uid="uid://b16lraifupvde" path="res://common/audios/point.mp3" id="15_sro07"]
 
-[node name="MainScene" type="Node2D" unique_id=1687410909 node_paths=PackedStringArray("player", "obstacles_container")]
+[sub_resource type="LabelSettings" id="LabelSettings_mirpm"]
+font_size = 48
+font_color = Color(0.7019608, 0.7019608, 0.7019608, 1)
+outline_size = 16
+outline_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_s5p1y"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_s5p1y"]
+events = [SubResource("InputEventKey_s5p1y")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mirpm"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1, 0.1, 0.1, 0.5019608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f14gc"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainScene" type="Node2D" unique_id=1687410909 node_paths=PackedStringArray("player", "obstacles_container", "point_stream_player")]
 script = ExtResource("1_6iw8k")
 player = NodePath("Player")
 obstacles_container = NodePath("ObstaclesContainer")
+point_stream_player = NodePath("PointStreamPlayer")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=397038911]
-anchor_mode = 0
+[node name="UI" type="CanvasLayer" parent="." unique_id=711997960 node_paths=PackedStringArray("player", "init_container", "credit_container", "init_button", "credit_button", "credit_back_button", "pause_button", "resume_button", "quit_button", "end_reset_button", "end_quit_button", "hud_container", "menu_container", "end_container")]
+process_mode = 3
+script = ExtResource("2_3t4qf")
+player = NodePath("../Player")
+init_container = NodePath("InitContainer")
+credit_container = NodePath("CreditContainer")
+init_button = NodePath("InitContainer/MainContainer/PlayButton")
+credit_button = NodePath("InitContainer/MainContainer/CreditButton")
+credit_back_button = NodePath("CreditContainer/MainContainer/BackButton")
+pause_button = NodePath("HUDContainer/PauseButton")
+resume_button = NodePath("MenuContainer/MainContainer/ResumeButton")
+quit_button = NodePath("MenuContainer/MainContainer/QuitButton")
+end_reset_button = NodePath("EndContainer/MainContainer/ResetButton")
+end_quit_button = NodePath("EndContainer/MainContainer/QuitButton")
+hud_container = NodePath("HUDContainer")
+menu_container = NodePath("MenuContainer")
+end_container = NodePath("EndContainer")
+
+[node name="InitContainer" type="MarginContainer" parent="UI" unique_id=977102894]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MainContainer" type="VBoxContainer" parent="UI/InitContainer" unique_id=1966246950]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="UI/InitContainer/MainContainer" unique_id=319159258]
+custom_minimum_size = Vector2(880, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("3_nim2u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayButton" type="Button" parent="UI/InitContainer/MainContainer" unique_id=318206337]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 64
+text = "PLAY"
+
+[node name="CreditButton" type="Button" parent="UI/InitContainer/MainContainer" unique_id=1221665672]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "CREDIT"
+
+[node name="CreditContainer" type="MarginContainer" parent="UI" unique_id=558974290]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MainContainer" type="VBoxContainer" parent="UI/CreditContainer" unique_id=1847525772]
+layout_mode = 2
+
+[node name="Title" type="TextureRect" parent="UI/CreditContainer/MainContainer" unique_id=1694061483]
+custom_minimum_size = Vector2(880, 800)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture = ExtResource("3_nim2u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgrammingLabel" type="Label" parent="UI/CreditContainer/MainContainer" unique_id=2064743562]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Programming"
+
+[node name="Label_00" type="Label" parent="UI/CreditContainer/MainContainer" unique_id=559263562]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Matheus Retroz"
+label_settings = SubResource("LabelSettings_mirpm")
+
+[node name="ArtLabel" type="Label" parent="UI/CreditContainer/MainContainer" unique_id=1113106116]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Art"
+
+[node name="Label_01" type="Label" parent="UI/CreditContainer/MainContainer" unique_id=172869400]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Matheus Retroz"
+label_settings = SubResource("LabelSettings_mirpm")
+
+[node name="SoundLabel" type="Label" parent="UI/CreditContainer/MainContainer" unique_id=1461441654]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Sound"
+
+[node name="Label_02" type="Label" parent="UI/CreditContainer/MainContainer" unique_id=809344680]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "SoundReality (Pixabay)
+freesound_community (Pixabay)
+freesound_gamestudio (Pixabay)"
+label_settings = SubResource("LabelSettings_mirpm")
+horizontal_alignment = 1
+
+[node name="Separator" type="Control" parent="UI/CreditContainer/MainContainer" unique_id=2061732609]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackButton" type="Button" parent="UI/CreditContainer/MainContainer" unique_id=263256055]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+shortcut = SubResource("Shortcut_s5p1y")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "BACK"
+
+[node name="HUDContainer" type="MarginContainer" parent="UI" unique_id=224416079]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/HUDContainer" unique_id=956311483]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+text = "0"
+script = ExtResource("3_3t4qf")
+metadata/_custom_type_script = "uid://kh6dmxb55v2d"
+
+[node name="PauseButton" type="TextureButton" parent="UI/HUDContainer" unique_id=801477349]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+shortcut = SubResource("Shortcut_s5p1y")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = ExtResource("4_ugojt")
+texture_hover = ExtResource("5_f6yoc")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MenuContainer" type="PanelContainer" parent="UI" unique_id=219958558]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mirpm")
+
+[node name="MainContainer" type="VBoxContainer" parent="UI/MenuContainer" unique_id=4595026]
+layout_mode = 2
+
+[node name="ScoreContainer" type="VBoxContainer" parent="UI/MenuContainer/MainContainer" unique_id=1476398753]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/MenuContainer/MainContainer/ScoreContainer" unique_id=813873159]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("3_3t4qf")
+metadata/_custom_type_script = "uid://kh6dmxb55v2d"
+
+[node name="Label" type="Label" parent="UI/MenuContainer/MainContainer/ScoreContainer/ScoreLabel" unique_id=718308092]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -34.5
+offset_right = -40.0
+offset_bottom = 34.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 64
+text = "SCORE"
+
+[node name="HighScoreLabel" type="Label" parent="UI/MenuContainer/MainContainer/ScoreContainer" unique_id=1145954524 node_paths=PackedStringArray("new_score_label")]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("3_3t4qf")
+high_score = true
+new_score_label = NodePath("NewLabel")
+metadata/_custom_type_script = "uid://kh6dmxb55v2d"
+
+[node name="Label" type="Label" parent="UI/MenuContainer/MainContainer/ScoreContainer/HighScoreLabel" unique_id=1715835842]
+layout_mode = 0
+offset_left = -181.0
+offset_right = -40.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 64
+text = "BEST"
+
+[node name="NewLabel" type="Label" parent="UI/MenuContainer/MainContainer/ScoreContainer/HighScoreLabel" unique_id=1138863698]
+layout_mode = 0
+offset_left = -340.0
+offset_right = -201.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.777635, 0.49173987, 5.7756904e-07, 1)
+theme_override_font_sizes/font_size = 64
+text = "NEW "
+
+[node name="ResumeButton" type="Button" parent="UI/MenuContainer/MainContainer" unique_id=1093397135]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+shortcut = SubResource("Shortcut_s5p1y")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "RESUME"
+
+[node name="QuitButton" type="Button" parent="UI/MenuContainer/MainContainer" unique_id=73570531]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "QUIT"
+
+[node name="EndContainer" type="PanelContainer" parent="UI" unique_id=2043195080]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mirpm")
+
+[node name="MainContainer" type="VBoxContainer" parent="UI/EndContainer" unique_id=223690081]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GameOverLabel" type="Label" parent="UI/EndContainer/MainContainer" unique_id=986210440]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+text = "Game Over"
+uppercase = true
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/EndContainer/MainContainer" unique_id=1820533661]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_f14gc")
+
+[node name="ScoreContainer" type="VBoxContainer" parent="UI/EndContainer/MainContainer/PanelContainer" unique_id=20015711]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="ScoreContainer" type="HBoxContainer" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer" unique_id=693528998]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer/ScoreContainer" unique_id=744777565]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 64
+text = "SCORE"
+
+[node name="ScoreLabel" type="Label" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer/ScoreContainer" unique_id=1481030669]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("3_3t4qf")
+metadata/_custom_type_script = "uid://kh6dmxb55v2d"
+
+[node name="HighScoreContainer" type="HBoxContainer" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer" unique_id=44656322]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="NewLabel" type="Label" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer/HighScoreContainer" unique_id=180866437]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.777635, 0.49173987, 5.7756904e-07, 1)
+theme_override_font_sizes/font_size = 64
+text = "NEW "
+
+[node name="Label" type="Label" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer/HighScoreContainer" unique_id=613565116]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 64
+text = "BEST"
+
+[node name="HighScoreLabel" type="Label" parent="UI/EndContainer/MainContainer/PanelContainer/ScoreContainer/HighScoreContainer" unique_id=572628861 node_paths=PackedStringArray("new_score_label")]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("3_3t4qf")
+high_score = true
+new_score_label = NodePath("../NewLabel")
+metadata/_custom_type_script = "uid://kh6dmxb55v2d"
+
+[node name="Separator" type="Control" parent="UI/EndContainer/MainContainer" unique_id=1780668150]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="UI/EndContainer/MainContainer" unique_id=887845576]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "RESET"
+
+[node name="QuitButton" type="Button" parent="UI/EndContainer/MainContainer" unique_id=324265428]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "QUIT"
 
 [node name="ObstaclesContainer" type="Node2D" parent="." unique_id=1391900383]
 
+[node name="ParallaxContainer" type="Node2D" parent="." unique_id=1874804171]
+z_index = -100
+
+[node name="Background" type="Parallax2D" parent="ParallaxContainer" unique_id=1596546655]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(2160, 0)
+repeat_times = 4
+script = ExtResource("3_s5p1y")
+metadata/_custom_type_script = "uid://cfp8keobxrflo"
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxContainer/Background" unique_id=1985589983]
+position = Vector2(-68, 0)
+texture = ExtResource("4_6loks")
+centered = false
+
+[node name="Mountain" type="Parallax2D" parent="ParallaxContainer" unique_id=1161908078]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(2160, 0)
+autoscroll = Vector2(-1000, 0)
+repeat_times = 4
+script = ExtResource("3_s5p1y")
+metadata/_custom_type_script = "uid://cfp8keobxrflo"
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxContainer/Mountain" unique_id=1648685656]
+position = Vector2(0, 1920)
+texture = ExtResource("5_6ycpv")
+centered = false
+offset = Vector2(0, -1187)
+
+[node name="Clouds_00" type="Parallax2D" parent="ParallaxContainer" unique_id=1821870820]
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(2160, 0)
+autoscroll = Vector2(-1000, 0)
+repeat_times = 4
+script = ExtResource("3_s5p1y")
+unique = true
+metadata/_custom_type_script = "uid://cfp8keobxrflo"
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxContainer/Clouds_00" unique_id=313566074]
+texture = ExtResource("9_f6yoc")
+centered = false
+
+[node name="Clouds_01" type="Parallax2D" parent="ParallaxContainer" unique_id=693244403]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(2160, 0)
+autoscroll = Vector2(-1000, 0)
+repeat_times = 4
+script = ExtResource("3_s5p1y")
+unique = true
+metadata/_custom_type_script = "uid://cfp8keobxrflo"
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxContainer/Clouds_01" unique_id=1557001918]
+texture = ExtResource("10_nim2u")
+centered = false
+
+[node name="Floor" type="Parallax2D" parent="ParallaxContainer" unique_id=426373244]
+z_index = 1
+z_as_relative = false
+repeat_size = Vector2(2160, 0)
+repeat_times = 4
+script = ExtResource("3_s5p1y")
+metadata/_custom_type_script = "uid://cfp8keobxrflo"
+
+[node name="Floor" type="Sprite2D" parent="ParallaxContainer/Floor" unique_id=808933068]
+position = Vector2(0, 1720)
+texture = ExtResource("4_2cqfw")
+centered = false
+
+[node name="ParallaxLayer" type="Parallax2D" parent="ParallaxContainer" unique_id=1642183834]
+z_index = 1
+z_as_relative = false
+scroll_scale = Vector2(1.5, 1.5)
+repeat_size = Vector2(2160, 0)
+repeat_times = 4
+script = ExtResource("3_s5p1y")
+metadata/_custom_type_script = "uid://cfp8keobxrflo"
+
+[node name="Floor" type="Sprite2D" parent="ParallaxContainer/ParallaxLayer" unique_id=570564796]
+position = Vector2(0, 1822)
+texture = ExtResource("5_kbdpr")
+centered = false
+
 [node name="Player" parent="." unique_id=2089189631 instance=ExtResource("2_symxd")]
+
+[node name="Camera" type="Camera2D" parent="." unique_id=397038911]
+anchor_mode = 0
+
+[node name="PointStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=798397672]
+stream = ExtResource("15_sro07")
+volume_db = -10.0

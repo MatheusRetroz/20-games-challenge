@@ -1,33 +1,59 @@
 [gd_scene format=3 uid="uid://cw2usuqh667l3"]
 
 [ext_resource type="Script" uid="uid://bh4qts753kawx" path="res://scenes/player/player.gd" id="1_8afob"]
-[ext_resource type="Texture2D" uid="uid://bnt4qbei58h6f" path="res://icon.svg" id="2_dovo2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_mirpm"]
-radius = 64.0
+[ext_resource type="Texture2D" uid="uid://dkx7jvih4kp5w" path="res://common/textures/player/player.png" id="2_dovo2"]
+[ext_resource type="Texture2D" uid="uid://cmln0h5i0jfra" path="res://common/textures/player/player_dead.png" id="2_lvxji"]
+[ext_resource type="Texture2D" uid="uid://orvxhptt3jer" path="res://common/textures/player/player_jump.png" id="4_p47bc"]
+[ext_resource type="AudioStream" uid="uid://h03xeg7drnea" path="res://common/audios/swoosh.mp3" id="5_0owmy"]
+[ext_resource type="AudioStream" uid="uid://c3tqi7mxnxvpg" path="res://common/audios/hit.mp3" id="6_0owmy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dovo2"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvxji")
+}],
 "loop": 1,
 "name": &"dead",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dovo2")
+}],
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p47bc")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 5.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lvxji"]
+radius = 62.0
+height = 186.0
 
 [node name="Player" type="CharacterBody2D" unique_id=2089189631]
 script = ExtResource("1_8afob")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=40487410]
-shape = SubResource("CircleShape2D_mirpm")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=194138714]
-texture = ExtResource("2_dovo2")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2083786447]
+position = Vector2(-32, -96)
 sprite_frames = SubResource("SpriteFrames_dovo2")
 animation = &"dead"
+autoplay = "idle"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=40487410]
+position = Vector2(0, -73)
+shape = SubResource("CapsuleShape2D_lvxji")
+
+[node name="JumpStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=191727443]
+stream = ExtResource("5_0owmy")
+volume_db = -20.0
+
+[node name="DeadStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=348002276]
+stream = ExtResource("6_0owmy")

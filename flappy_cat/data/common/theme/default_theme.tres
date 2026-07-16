@@ -1,0 +1,68 @@
+[gd_resource type="Theme" format=3 uid="uid://1xjw3tkv8j58"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wf5il"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.43137255, 0.43137255, 0.43137255, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6yoc"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.22352941, 0.22352941, 0.22352941, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4l1l"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.43137255, 0.43137255, 0.43137255, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/colors/font_color = Color(0.9, 0.9, 0.9, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_outline_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+Button/colors/font_pressed_color = Color(0.95, 0.95, 0.95, 1)
+Button/constants/outline_size = 32
+Button/font_sizes/font_size = 48
+Button/styles/hover = SubResource("StyleBoxFlat_wf5il")
+Button/styles/normal = SubResource("StyleBoxFlat_f6yoc")
+Button/styles/pressed = SubResource("StyleBoxFlat_i4l1l")
+Label/colors/font_color = Color(0.9019608, 0.9019608, 0.9019608, 1)
+Label/colors/font_outline_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+Label/constants/outline_size = 32
+Label/font_sizes/font_size = 92
+MarginContainer/constants/margin_bottom = 8
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 8
