@@ -12,5 +12,8 @@ The games are being made in the [Godot Engine](https://godotengine.org).
 [1. Pong](https://github.com/MatheusRetroz/20-games-challenge/tree/master/pong)
     - Status: Released
 
-[2. FlappyCat](https://github.com/MatheusRetroz/20-games-challenge/tree/master/flappy_cat)
+[2. FlappyCat](https://github.com/MatheusRetroz/20-games-challenge/tree/master/flappy-cat)
     - Status: Released
+
+[3. Breakout](https://github.com/MatheusRetroz/20-games-challenge/tree/master/breakout)
+    - Status: In Progress
